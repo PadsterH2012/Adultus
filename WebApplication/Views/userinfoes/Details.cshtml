@@ -1,0 +1,172 @@
+﻿@model WebApplication.userinfo
+@using Microsoft.AspNet.Identity;
+
+@{
+    ViewBag.Title = "Details";
+    String Picture = "/Content/UserPicture/"+ Model.Profile_Pic;
+    var items = new List<SelectListItem>()
+        {
+            new SelectListItem() { Text = "Member", Value = "0" },
+            new SelectListItem() { Text = "Client", Value = "1" },
+        };
+
+    var GenderItems = new List<SelectListItem>()
+        {
+            new SelectListItem() { Text = "Female", Value = "0" },
+            new SelectListItem() { Text = "Male",    Value = "1" }
+        };
+
+    var GenderPrefItems = new List<SelectListItem>()
+        {
+            new SelectListItem() { Text = "Heterosexual", Value = "0" },
+            new SelectListItem() { Text = "Bisexual",    Value = "1" },
+            new SelectListItem() { Text = "Gay",    Value = "2" },
+            new SelectListItem() { Text = "Lesbian",    Value = "3" }
+        };
+}
+<style>
+    dt,dd {
+        padding-top:10px;
+    }
+</style>
+<h2>Details</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("Profile Picture")
+        </dt>
+
+        <dd>
+            <img id="image" src="@Picture" alt="Picture" style="width:200px;height:200px;" class="img-rounded">
+        </dd>
+
+        <dt>
+            @Html.DisplayName("User Name")
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UserName)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Account Type")
+        </dt>
+
+        <dd>
+            @Html.DropDownListFor(model => model.Account_Type, items, new { @class = "form-control", style="width:50%;", disabled="true"})
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Birth Date")
+        </dt>
+
+        <dd>
+            @Html.TextBoxFor(model => model.Date_Of_Birth, "{0:yyyy-MM-dd}", new { @class = "my-style form-control", style = "width:50%;", @readonly = true })
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Gender)
+        </dt>
+
+        <dd>
+            @Html.DropDownListFor(model => model.Gender, GenderItems, new { @class = "form-control", style = "width:50%;", disabled = "true" })
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Gender Pref")
+        </dt>
+
+        <dd>
+            @Html.DropDownListFor(model => model.Gender_Pref, GenderPrefItems, new { @class = "form-control", style = "width:50%;", disabled = "true" })
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Join Date")
+        </dt>
+
+        <dd>
+            @Html.TextBoxFor(model => model.Join_Date, "{0:yyyy-MM-dd}", new { @class = "my-style form-control", style = "width:50%;", @readonly = true })
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.City)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.City)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.County)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.County)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Country)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Country)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Postcode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Postcode)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Online Status")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Online_Status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ranking)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ranking)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Score)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Score)
+        </dd>
+        <dt>
+            @Html.DisplayName("Gallery Picture")
+        </dt>
+
+        <dd>
+            @{
+                        String[] Imgs = Model.Gallery_Pics.ToString().Split(',');
+                        String userID = Model.Id;
+                        foreach (var name in Imgs)
+                        {
+                            if (name.Length > 0)
+                            {
+                        <div class="card">
+                            <label class="image-checkbox">
+                                <img src="~/Content/UserPicture/Gallery/@userID/@name" alt="Gallery" style="width:200px;height:200px;" />
+                            </label>
+                        </div>
+                    }
+            }
+            }
+        </dd>
+    </dl>
+</div>
+<p>
+    <a href="javascript:window.history.go(-1);">Back to List</a>
+</p>

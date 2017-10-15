@@ -1,0 +1,99 @@
+﻿
+@{
+    ViewBag.Title = "ImageEdit";
+}
+
+<h2>ImageEdit</h2>
+
+<link href="~/Content/cropper.css" rel="stylesheet" />
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<style>
+    .container {
+        max-width: 640px;
+        margin: 20px auto;
+    }
+
+    img {
+        max-width: 100%;
+    }
+
+    /* Override Cropper's styles */
+    .cropper-view-box,
+    .cropper-face {
+        border-radius: 50%;
+    }
+</style>
+    <div class="container">
+        <h1>Crop a round image</h1>
+        <h3>Image</h3>
+        <div>
+            <img id="image" src="~/Content/UserPicture/16954a95-5526-4d82-be20-0bbeb67eb183.jpg" alt="Picture">
+        </div>
+        <h3>Result</h3>
+        <button type="button" id="button">Crop</button>
+        <div id="result"></div>
+    </div>
+    <!-- Scripts -->
+
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
+<script src="~/Scripts/cropper.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+
+    <script>
+    function getRoundedCanvas(sourceCanvas) {
+      var canvas = document.createElement('canvas');
+      var context = canvas.getContext('2d');
+      var width = sourceCanvas.width;
+      var height = sourceCanvas.height;
+
+      canvas.width = width;
+      canvas.height = height;
+      context.beginPath();
+//{{Rectangle
+      context.fillRect(0, 0, width, height);
+      context.fillStyle = 'rgba(0,0,0,0)';
+      context.save();
+//==Arc
+      //arc(width / 2, height / 2, Math.min(width, height) / 2, 0, 2 * Math.PI);
+      //context.strokeStyle
+      //context.stroke();
+      //context.clip();
+//}}
+      context.drawImage(sourceCanvas, 0, 0, width, height);
+
+      return canvas;
+    }
+
+    $(function () {
+      var $image = $('#image');
+      var $button = $('#button');
+      var $result = $('#result');
+      var croppable = false;
+
+      $image.cropper({
+        aspectRatio: 1,
+        viewMode: 1,
+        ready: function () {
+          croppable = true;
+        }
+      });
+
+      $button.on('click', function () {
+        var croppedCanvas;
+        var roundedCanvas;
+
+        if (!croppable) {
+          return;
+        }
+
+        // Crop
+        croppedCanvas = $image.cropper('getCroppedCanvas');
+
+        // Round
+        roundedCanvas = getRoundedCanvas(croppedCanvas);
+
+        // Show
+        $result.html('<img src="' + roundedCanvas.toDataURL() + '">');
+      });
+    });
+    </script>

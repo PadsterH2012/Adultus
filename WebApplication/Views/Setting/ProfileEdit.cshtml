@@ -1,0 +1,416 @@
+﻿@model WebApplication.Models.RegisterViewModel
+@using Microsoft.AspNet.Identity;
+@{
+    ViewBag.Title = "Register";
+
+    ViewBag.Type0 = (Model.AccountType == 0 ? "active" : "");
+    ViewBag.Type1 = (Model.AccountType == 1 ? "active" : "");
+
+    ViewBag.Gender0 = (Model.Gender == 0 ? "active" : "");
+    ViewBag.Gender1 = (Model.Gender == 1 ? "active" : "");
+
+    ViewBag.GenderPref0 = (Model.GenderPref == 0 ? "active" : "");
+    ViewBag.GenderPref1 = (Model.GenderPref == 1 ? "active" : "");
+    ViewBag.GenderPref2 = (Model.GenderPref == 2 ? "active" : "");
+    ViewBag.GenderPref3 = (Model.GenderPref == 3 ? "active" : "");    
+
+    ViewBag.Picture = "Image/man.svg";
+    String userID = User.Identity.GetUserId();
+    if ( Model.Picture != null && Model.Picture.Length > 0 )
+    {
+        ViewBag.Picture = "Content/UserPicture/"+ Model.Picture;
+    }
+}
+
+<script language="JavaScript" src="http://www.geoplugin.net/javascript.gp" type="text/javascript"></script>
+<link href="~/Content/cropper.css" rel="stylesheet" />
+<style>
+    img {
+        max-width: 100%;
+    }
+
+    /* Override Cropper's styles */
+    .cropper-view-box,
+    .cropper-face {
+        border-radius: 50%;
+    }
+</style>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var allCountries = new Array();
+        $.getJSON("/Scripts/countries.json", function (data) {
+            $('#Country').children().remove();
+            allCountries = data.countries;
+
+            for (var c in allCountries)
+            {
+                $('#Country').append($('<option>', {
+                    value: allCountries[c].id,
+                    text: allCountries[c].name
+                }));
+                //console.log(allCountries[c].name);
+            }
+            var country = geoplugin_countryName();
+            $("#Country option:contains(" + country + ")").attr('selected', true);
+
+            StatebyCountry($("#Country option:selected").val());
+        }).error(function(){
+        });
+
+        $('#Country').change(function () {
+            StatebyCountry($("#Country option:selected").val());
+        });
+
+        function StatebyCountry( country )
+        {
+            var allStates = new Array();
+            $.getJSON('/Scripts/states.json', function (data) {
+                $('#County').children().remove();
+                allStates = data.states;
+
+                for (var c in allStates) {
+                    if (allStates[c].country_id == country)
+                    {
+                        $('#County').append($('<option>', {
+                            value: allStates[c].id,
+                            text: allStates[c].name
+                        }));
+                        //console.log(allCountries[c].name);
+                    }
+                }
+                var region = geoplugin_region();
+                $("#County option:contains(" + region + ")").attr('selected', true);
+
+                CitybyCounty($("#County option:selected").val() );
+            }).error(function () {
+            });
+        }
+
+        $('#County').change(function () {
+            CitybyCounty($("#County option:selected").val());
+        });
+
+        function CitybyCounty(county)
+        {
+            var allCities = new Array();
+            $.getJSON('/Scripts/cities.json', function (data) {
+                $('#City').children().remove();
+                allCities = data.cities;
+
+                for (var c in allCities) {
+                    if (allCities[c].state_id == county) {
+                        $('#City').append($('<option>', {
+                            value: allCities[c].id,
+                            text: allCities[c].name
+                        }));
+                        //console.log(allCountries[c].name);
+                    }
+                }
+                var city = geoplugin_city();
+                $("#City option:contains(" + city + ")").attr('selected', true);
+            }).error(function () {
+            });
+        }
+    });
+</script>
+<!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Select Profile Picture</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-3 col-lg-offset-3" style="height:200px;align-content:center;">
+                        <img id="image" src="~/@ViewBag.Picture" alt="Picture">
+                    </div>
+                    <div class="col-lg-6">
+                        <div id="result"></div>
+                    </div>
+                </div>
+               <div class="row">
+                    @{
+                        String[] Imgs = ViewBag.GalleryPics.ToString().Split(',');
+                        foreach (var name in Imgs)
+                        {
+                            if (name.Length > 0)
+                            {
+                                <div class="card" style="width:80px;height:50px;">
+                                    <label class="image-checkbox">
+                                        <a href="javascript:ChangeSrcImg('/Content/UserPicture/Gallery/@userID/@name');">
+                                            <img src="~/Content/UserPicture/Gallery/@userID/@name" alt="Gallery" style="width:50px;height:50px;" />
+                                        </a>
+                                    </label>
+                                </div>
+                            }
+                        }
+                    }
+               </div>
+                <div class="row">
+                    @{
+                        String[] ImgsPriv = ViewBag.PrivateGalleryPics.ToString().Split(',');
+                        foreach (var name in ImgsPriv)
+                        {
+                            if (name.Length > 0)
+                            {
+                                <div class="card" style="width:80px;height:50px;">
+                                    <label class="image-checkbox">
+                                        <a href="javascript:ChangeSrcImg('/Content/UserPicture/Private/@userID/@name');">
+                                            <img src="~/Content/UserPicture/Private/@userID/@name" alt="Private" style="width:50px;height:50px;" />
+                                        </a>
+                                    </label>
+                                </div>
+                            }
+                        }
+                    }
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="button" class="btn btn-default">Crop</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" onclick="getCropedImage();">OK</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Scripts -->
+<script src="~/Scripts/cropper.js"></script>
+<script>
+    function getCropedImage()
+    {
+        img = document.getElementById("picview");
+        img2 = document.getElementById("cropimg");
+        img.src = img2.src;
+    }
+
+    function getRoundedCanvas(sourceCanvas) {
+      var canvas = document.createElement('canvas');
+      var context = canvas.getContext('2d');
+      var width = sourceCanvas.width;
+      var height = sourceCanvas.height;
+
+      canvas.width = width;
+      canvas.height = height;
+      context.beginPath();
+//{{Rectangle
+      context.fillRect(0, 0, width, height);
+      context.fillStyle = 'rgba(0,0,0,0)';
+      context.save();
+//==Arc
+      //arc(width / 2, height / 2, Math.min(width, height) / 2, 0, 2 * Math.PI);
+      //context.strokeStyle
+      //context.stroke();
+      //context.clip();
+//}}
+      context.drawImage(sourceCanvas, 0, 0, width, height);
+      return canvas;
+    }
+
+    $(function () {
+        var $image = $('#image');
+        var $button = $('#button');
+        var $result = $('#result');
+        var croppable = false;
+
+        $image.cropper({
+            aspectRatio: 1,
+            viewMode: 1,
+            ready: function () {
+                croppable = true;
+            }
+        });
+
+        $button.on('click', function () {
+            var croppedCanvas;
+            var roundedCanvas;
+
+            if (!croppable) {
+                return;
+            }
+
+            // Crop
+            croppedCanvas = $image.cropper('getCroppedCanvas');
+
+            // Round
+            roundedCanvas = getRoundedCanvas(croppedCanvas);
+
+            // Show
+            $result.html('<img id="cropimg" src="' + roundedCanvas.toDataURL() + '">');
+            $("#cropImgParam").val(roundedCanvas.toDataURL());
+        });
+    });
+
+    function ChangeSrcImg(src_img) {
+        var $image = $('#image');
+        $image.cropper('replace', src_img);
+    }
+</script>
+
+@using (Html.BeginForm("ProfileEdit", "Setting", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal", role = "form" }))
+{
+    var items = new List<SelectListItem>()
+        {
+            new SelectListItem() { Text = "Member", Value = "0" },
+            new SelectListItem() { Text = "Client", Value = "1" },
+        };
+
+    var GenderItems = new List<SelectListItem>()
+        {
+            new SelectListItem() { Text = "Female", Value = "0" },
+            new SelectListItem() { Text = "Male",    Value = "1" }
+        };
+
+    var GenderPrefItems = new List<SelectListItem>()
+        {
+            new SelectListItem() { Text = "Heterosexual", Value = "0" },
+            new SelectListItem() { Text = "Bisexual",    Value = "1" },
+            new SelectListItem() { Text = "Gay",    Value = "2" },
+            new SelectListItem() { Text = "Lesbian",    Value = "3" }
+        };
+    var CountryItems = new List<SelectListItem>()
+        {
+            new SelectListItem() { Text = "Please Select Country", Value = "0" }
+        };
+
+    var CountyItems = new List<SelectListItem>()
+        {
+            new SelectListItem() { Text = "Please Select State", Value = "0" }
+        };
+
+    var CityItems = new List<SelectListItem>()
+        {
+            new SelectListItem() { Text = "Please Select City", Value = "0" }
+        };
+
+    @Html.AntiForgeryToken()
+    @Html.Hidden("cropImgParam")
+    <h4>Edit Profile</h4>
+    <hr />
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+    <div class="form-group row">
+        @Html.LabelFor(m => m.AccountType, new { @class = "col-md-4 control-label" })
+        <div class="col-md-8">
+            @Html.DropDownListFor(model => model.AccountType, items, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group row">
+        @Html.LabelFor(m => m.UserName, new { @class = "col-md-4 control-label" })
+        <div class="col-md-8">
+            @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group row">
+        @Html.LabelFor(m => m.Picture, new { @class = "col-md-4 control-label" })
+        <div class="col-md-8">
+            @*<script type="text/javascript">
+                function changedPic() {
+                    input = document.getElementById("picture_selector");
+                    fReader = new FileReader();
+                    fReader.readAsDataURL(input.files[0]);
+                    fReader.onloadend = function (event) {
+                        img = document.getElementById("picview");
+                        img.src = event.target.result;
+                    }
+                }
+            </script>*@
+            <img id="picview" name="picview" src="~/@ViewBag.Picture" class="img-rounded" alt="Picture" width="100" height="100">
+            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Choose Image</button>
+            @*<label class="btn btn-primary" for="picture_selector" style="display:inline-block;vertical-align:bottom;float:none;">
+                <input id="picture_selector" name="picture_selector" type="file" style="display:none;" onchange="changedPic()">
+                Browser
+            </label>*@
+        </div>
+    </div>
+    <div class="form-group row">
+        @Html.LabelFor(m => m.Email, new { @class = "col-md-4 control-label" })
+        <div class="col-md-8">
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group row">
+        @Html.LabelFor(m => m.Password, new { @class = "col-md-4 control-label" })
+        <div class="col-md-8">
+            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group row">
+        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-4 control-label" })
+        <div class="col-md-8">
+            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group row">
+        @Html.LabelFor(m => m.Birthday, new { @class = "col-md-4 control-label" })
+        <div class="col-md-8">
+            @Html.EditorFor(model => model.Birthday, new { htmlAttributes = new { @Value = @Model.Birthday.ToString("yyyy-MM-dd"), @class = "form-control" } })
+        </div>
+    </div>
+    <div class="form-group row">
+        @Html.LabelFor(m => m.Gender, new { @class = "col-md-4 control-label" })
+        <div class="col-md-8">
+            @Html.DropDownListFor(model => model.Gender, GenderItems, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group row">
+        @Html.LabelFor(m => m.GenderPref, new { @class = "col-md-4 control-label" })
+        <div class="col-md-8">
+            @Html.DropDownListFor(model => model.GenderPref, GenderPrefItems, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group row">
+        @Html.LabelFor(m => m.PhoneNumber, new { @class = "col-md-4 control-label" })
+        <div class="col-md-8">
+            @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Ethnicity, new { @class = "col-md-4 control-label" })
+        <div class="col-md-8">
+            @Html.TextBoxFor(m => m.Ethnicity, new { @class = "form-control" })
+        </div>
+    </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Interests, new { @class = "col-md-4 control-label" })
+            <div class="col-md-8">
+                @Html.TextBoxFor(m => m.Interests, new { @class = "form-control" })
+            </div>
+        </div>
+    <div class="form-group row">
+        @Html.LabelFor(m => m.City, new { @class = "col-md-4 control-label" })
+        <div class="col-md-8">
+            @Html.DropDownListFor(model => model.City, CityItems, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group row">
+        @Html.LabelFor(m => m.County, new { @class = "col-md-4 control-label" })
+        <div class="col-md-8">
+            @Html.DropDownListFor(model => model.County, CountyItems, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group row">
+        @Html.LabelFor(m => m.Country, new { @class = "col-md-4 control-label" })
+        <div class="col-md-8">
+            @Html.DropDownListFor(model => model.Country, CountryItems, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group row">
+        @Html.LabelFor(m => m.Postcode, new { @class = "col-md-4 control-label" })
+        <div class="col-md-8">
+            @Html.TextBoxFor(m => m.Postcode, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-md-4">
+        </div>
+        <div class="col-md-offset-4 col-md-8">
+            <input type="submit" class="btn btn-default" value="Save"/>
+        </div>
+    </div>
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

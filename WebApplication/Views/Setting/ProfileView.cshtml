@@ -1,0 +1,39 @@
+﻿@{
+    ViewBag.Title = "ProfileView";
+}
+
+<div class="row row-offcanvas row-offcanvas-right">
+    <div class="col-2 col-md-2 sidebar-offcanvas" id="sidebar">
+        <div class="list-group">
+         @{
+             ViewBag.Profile = "";
+             ViewBag.Gallery = "";
+             ViewBag.Private = "";
+             switch ((int)ViewBag.mode)
+             {
+                 case 0: ViewBag.Profile = "active"; break;
+                 case 1: ViewBag.Gallery = "active"; break;
+                 case 2: ViewBag.Private = "active"; break;
+             }
+        }
+        @Html.ActionLink("Profile", "ProfileView", new { mode = 0 }, new { @class = "list-group-item " + @ViewBag.Profile })
+        @Html.ActionLink("Gallery", "ProfileView", new { mode = 1 }, new { @class = "list-group-item " + @ViewBag.Gallery })
+        @Html.ActionLink("Private Gallery", "ProfileView", new { mode = 2 }, new { @class = "list-group-item " + @ViewBag.Private })
+        @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { @class = "form-inline list-group-item" }))
+        {
+            <input id="searchString" name="searchString" class="form-control mr-sm-1" style="width:67%" type="text" placeholder="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        }
+        </div>
+    </div><!--/span-->
+    <div class="col-12 col-md-9">
+    @{ 
+        switch ((int)ViewBag.mode)
+        {
+            case 0: @Html.Partial("ProfileEdit"); break;
+            case 1: @Html.Partial("GalleryEdit"); break;
+            case 2: @Html.Partial("PrivateGalleryEdit"); break;
+        }
+    }   
+    </div><!--/span-->
+</div><!--/row-->

@@ -1,0 +1,75 @@
+﻿@model PagedList.IPagedList<WebApplication.userlist>
+@using PagedList.Mvc
+@{
+    ViewBag.Title = "Home Page";
+}
+
+@using (Html.BeginForm("Index", "Home", FormMethod.Post, new { @class = "form-inline my-md-0" }))
+{
+    <table class="col-md-8">
+        <tr>
+            <td>
+                <select id="GenderPref" name="GenderPref" class="form-control version-selector" style="width: 200px; cursor: pointer">
+                    <option value="0"></option>
+                    <option value="1">Heterosexual</option>
+                    <option value="2">Bisexual</option>
+                    <option value="3">Gay</option>
+                    <option value="4">Lesbian</option>
+                </select>
+            </td>
+            <td width="10px"></td>
+            <td>
+                <div class="checkbox">
+                    <input id="OnlineOnly" name="OnlineOnly" type="checkbox" style="vertical-align:middle;">
+                    <label for="OnlineOnly">
+                        Online
+                    </label>
+                </div>
+            </td>
+            <td width="10px"></td>
+            <td>
+                <input id="searchString" name="searchString" class="form-control mr-sm-2" style="width:70%" type="text" placeholder="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </td>
+        </tr>
+    </table>
+}
+<div class="row" style="height:10px;"></div>
+<div class="album text-muted" style="background-color:#FFFFFF;">
+    <div class="container">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                String profilePic = "/Content/UserPicture/"+@item.Profile_Pic;
+                if (!File.Exists(Server.MapPath("/Content/UserPicture/") + @item.Profile_Pic)) profilePic = "/Image/man.svg";
+                <div class="item-gallery" style="margin-left:5px;margin-right:5px;">
+                    <a href="~/userinfoes/Details/@item.Id" title="@item.UserName" data-gallery>
+                        <div class="crop" style="width: 200px; float:left;">@item.UserName</div>
+                        <div class="crop" style="float:left;">Age:@item.age</div>
+                        <div class="crop" style="float:left;">Location:@item.Location</div>
+                        <img src="@profilePic" alt="Photo" class="img-rounded" />
+                        <div class="crop" style="float:left;">@item.OnlineNote</div>
+                    </a>
+                </div>
+            }
+        </div>
+        <div class="row">
+            @if (@Model.PageCount > 1)
+            {
+                <table align="center">
+                    <tr>
+                        <td>
+                            @Html.PagedListPager(Model, page => Url.Action("Index",
+                                new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+                        </td>
+                        <td>
+                            Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+                        </td>
+                    </tr>
+                </table>
+            }
+        </div>
+    </div>
+</div>
+@Scripts.Render("~/bundles/jquery")
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>

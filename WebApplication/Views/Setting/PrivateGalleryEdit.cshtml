@@ -1,0 +1,96 @@
+﻿@model String
+@using Microsoft.AspNet.Identity;
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script type="text/javascript">
+    $(function ($) {
+        // init the state from the input
+        $(".image-checkbox").each(function () {
+            if ($(this).find('input[type="checkbox"]').first().attr("checked")) {
+                $(this).addClass('image-checkbox-checked');
+            }
+            else {
+                $(this).removeClass('image-checkbox-checked');
+            }
+        });
+
+        // sync the state to the input
+        $(".image-checkbox").on("click", function (e) {
+            if ($(this).hasClass('image-checkbox-checked')) {
+                $(this).removeClass('image-checkbox-checked');
+                $(this).find('input[type="checkbox"]').first().removeAttr("checked");
+            }
+            else {
+                $(this).addClass('image-checkbox-checked');
+                $(this).find('input[type="checkbox"]').first().attr("checked", "checked");
+            }
+
+            e.preventDefault();
+        });
+    });
+</script>
+<style>
+    .image-checkbox {
+        cursor: pointer;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        border: 4px solid transparent;
+        outline: 0;
+    }
+
+        .image-checkbox input[type="checkbox"] {
+            display: none;
+        }
+
+    .image-checkbox-checked {
+        border-color: #f58723;
+    }
+</style>
+<script type="text/javascript">
+    function changedPic() {
+        $("#mode").val("0");
+        document.forms["AddPrivateGallery"].submit();
+    }
+    function setMode(md) {
+        $("#mode").val(md);
+    }
+</script>
+@using (Html.BeginForm("AddPrivateGallery", "Setting", FormMethod.Post, new { id = "AddPrivateGallery", enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <input type="hidden" id="mode" value="0" name="mode" />
+    <div class="row">
+        <div class="col-lg-2 col-lg-offset-10 text-right">
+            <input type="submit" value="Delete" class="btn btn-primary" onclick="setMode('1');" />
+        </div>
+    </div>
+    <div class="album text-muted">
+        <div class="row">
+            @{
+                String[] Imgs = Model.ToString().Split(',');
+                String userID = User.Identity.GetUserId();
+                foreach (var name in Imgs)
+                {
+                    if (name.Length > 0)
+                    {
+                        <div class="card">
+                            <label class="image-checkbox">
+                                <img src="~/Content/UserPicture/Private/@userID/@name" alt="Gallery" style="width:100%;" />
+                                <input type="checkbox" name="gallery[]" value="@name" />
+                            </label>
+                        </div>
+                    }
+                }
+            }
+
+            <div class="card">
+                
+                <label class="btn" for="picture_selector" style="display:inline-block;vertical-align:bottom;float:none;width:100%;">
+                    <img src="~/Image/gallery_plus.svg" alt="Card image cap" style="width:100%;">
+                    <input id="picture_selector" name="picture_selector" type="file" style="display:none;" onchange="changedPic()">
+                </label>
+            </div>
+        </div>
+    </div>
+}

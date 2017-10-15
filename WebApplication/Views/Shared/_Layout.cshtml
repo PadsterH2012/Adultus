@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Ragthorn</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="~/Content/album.css" rel="stylesheet">
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Content/navbar.css" rel="stylesheet">
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet">
+    <link href="~/Content/bootsnipp.css" rel="stylesheet">
+    <link href="~/Content/pagedlist.css" rel="stylesheet">
+    @Scripts.Render("~/bundles/jquery")
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                @Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Settings <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Profile", "ProfileView", "Setting", new { area = "" }, new { @class = "" })</li>
+                            <li><a href="" onclick="$('#logoutForm').submit(); return false;">Logout</a></li>
+                            @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "" }))
+                            {
+                                @Html.AntiForgeryToken()
+                            }
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <nav class="navbar navbar-inverse bg-inverse navbar-toggleable-md">
+        <div class="container">
+            <div class="collapse navbar-collapse" id="navbarsExampleContainer">
+                <div class="col-md-2">
+                </div>
+                <div class="col-md-8">
+                    @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { @class = "form-inline my-md-0" }))
+                    {
+                        <input id="searchString" name="searchString" class="form-control mr-sm-2" style="width:70%" type="text" placeholder="Search">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                    }
+                </div>
+                <div class="col-md-2">
+                    <ul class="navbar-nav mr-auto" style="float:right;">
+                        <li class="nav-item dropdown">
+                            <div class="dropdown-menu" aria-labelledby="dropdown02">
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="container body-content">
+            @RenderBody()
+            <hr />
+            <footer style="text-align:center;">
+                <p>&copy; @DateTime.Now.Year - Ragthorn</p>
+            </footer>
+        </div>
+    </div>
+    
+    @Scripts.Render("~/bundles/bootstrap")
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

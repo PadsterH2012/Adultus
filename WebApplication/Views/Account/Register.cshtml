@@ -1,0 +1,247 @@
+﻿@model WebApplication.Models.RegisterViewModel
+@{
+    ViewBag.Title = "Register";
+}
+<script language="JavaScript" src="http://www.geoplugin.net/javascript.gp" type="text/javascript"></script>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var allCountries = new Array();
+        $.getJSON('/Scripts/countries.json', function (data) {
+            $('#Country').children().remove();
+            allCountries = data.countries;
+            
+            for (var c in allCountries)
+            {
+                $('#Country').append($('<option>', {
+                    value: allCountries[c].id,
+                    text: allCountries[c].name
+                }));
+                //console.log(allCountries[c].name);
+            }
+            var country = geoplugin_countryName();
+            $("#Country option:contains(" + country + ")").attr('selected', true);
+
+            StatebyCountry($("#Country option:selected").val());
+        }).error(function(){
+        });
+
+        $('#Country').change(function () {
+            StatebyCountry($("#Country option:selected").val());
+        });
+
+        function StatebyCountry( country )
+        {
+            var allStates = new Array();
+            $.getJSON('/Scripts/states.json', function (data) {
+                $('#County').children().remove();
+                allStates = data.states;
+
+                for (var c in allStates) {
+                    if (allStates[c].country_id == country)
+                    {
+                        $('#County').append($('<option>', {
+                            value: allStates[c].id,
+                            text: allStates[c].name
+                        }));
+                        //console.log(allCountries[c].name);
+                    }
+                }
+                var region = geoplugin_region();
+                $("#County option:contains(" + region + ")").attr('selected', true);
+
+                CitybyCounty($("#County option:selected").val() );
+            }).error(function () {
+            });
+        }
+
+        $('#County').change(function () {
+            CitybyCounty($("#County option:selected").val());
+        });
+
+        function CitybyCounty(county)
+        {
+            var allCities = new Array();
+            $.getJSON('/Scripts/cities.json', function (data) {
+                $('#City').children().remove();
+                allCities = data.cities;
+
+                for (var c in allCities) {
+                    if (allCities[c].state_id == county) {
+                        $('#City').append($('<option>', {
+                            value: allCities[c].id,
+                            text: allCities[c].name
+                        }));
+                        //console.log(allCountries[c].name);
+                    }
+                }
+                var city = geoplugin_city();
+                $("#City option:contains(" + city + ")").attr('selected', true);
+            }).error(function () {
+            });
+        }
+    });
+</script>
+<div class="col-md-6 col-md-offset-3">
+    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal", role = "form" }))
+    {
+        var items = new List<SelectListItem>()
+        {
+            new SelectListItem() { Text = "Member", Value = "0" },
+            new SelectListItem() { Text = "Client", Value = "1" },
+        };
+
+        var GenderItems = new List<SelectListItem>()
+        {
+            new SelectListItem() { Text = "Female", Value = "0" },
+            new SelectListItem() { Text = "Male",    Value = "1" }
+        };
+
+        var GenderPrefItems = new List<SelectListItem>()
+        {
+            new SelectListItem() { Text = "Heterosexual", Value = "0" },
+            new SelectListItem() { Text = "Bisexual",    Value = "1" },
+            new SelectListItem() { Text = "Gay",    Value = "2" },
+            new SelectListItem() { Text = "Lesbian",    Value = "3" }
+        };
+
+        var CountryItems = new List<SelectListItem>()
+        {
+            new SelectListItem() { Text = "Please Select Country", Value = "0" }
+        };
+
+        var CountyItems = new List<SelectListItem>()
+        {
+            new SelectListItem() { Text = "Please Select State", Value = "0" }
+        };
+
+        var CityItems = new List<SelectListItem>()
+        {
+            new SelectListItem() { Text = "Please Select City", Value = "0" }
+        };
+
+        @Html.AntiForgeryToken()
+        <h4>Create a new account.</h4>
+        <hr />
+        @Html.ValidationSummary("", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(m => m.AccountType, new { @class = "col-md-4 control-label" })
+            <div class="col-md-8">
+                @Html.DropDownListFor(model => model.AccountType, items, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.UserName, new { @class = "col-md-4 control-label" })
+            <div class="col-md-8">
+                @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group hidden">
+            @Html.LabelFor(m => m.Picture, new { @class = "col-md-4 control-label" })
+            <div class="col-md-8">
+                <script type="text/javascript">
+                    function changedPic() {
+                        input = document.getElementById("picture_selector");
+                        fReader = new FileReader();
+                        fReader.readAsDataURL(input.files[0]);
+                        fReader.onloadend = function (event) {
+                            img = document.getElementById("picview");
+                            img.src = event.target.result;
+                        }
+                    }
+                </script>
+                <img id="picview" name="picview" src="~/Image/man.svg" class="img-rounded" alt="Picture" width="100" height="100">
+                <label class="btn btn-primary" for="picture_selector" style="display:inline-block;vertical-align:bottom;float:none;">
+                    <input id="picture_selector" name="picture_selector" type="file" style="display:none;" onchange="changedPic()">
+                    Browser
+                </label>
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Email, new { @class = "col-md-4 control-label" })
+            <div class="col-md-8">
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Password, new { @class = "col-md-4 control-label" })
+            <div class="col-md-8">
+                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-4 control-label" })
+            <div class="col-md-8">
+                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Birthday, new { @class = "col-md-4 control-label" })
+            <div class="col-md-8">
+                @Html.EditorFor(model => model.Birthday, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Gender, new { @class = "col-md-4 control-label" })
+            <div class="col-md-8">
+                @Html.DropDownListFor(model => model.Gender, GenderItems, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.GenderPref, new { @class = "col-md-4 control-label" })
+            <div class="col-md-8">
+                @Html.DropDownListFor(model => model.GenderPref, GenderPrefItems, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.PhoneNumber, new { @class = "col-md-4 control-label" })
+            <div class="col-md-8">
+                @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Ethnicity, new { @class = "col-md-4 control-label" })
+            <div class="col-md-8">
+                @Html.TextBoxFor(m => m.Ethnicity, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Interests, new { @class = "col-md-4 control-label" })
+            <div class="col-md-8">
+                @Html.TextBoxFor(m => m.Interests, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.City, new { @class = "col-md-4 control-label" })
+            <div class="col-md-8">
+                @Html.DropDownListFor(model => model.City, CityItems, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.County, new { @class = "col-md-4 control-label" })
+            <div class="col-md-8">
+                @Html.DropDownListFor(model => model.County, CountyItems, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Country, new { @class = "col-md-4 control-label" })
+            <div class="col-md-8">
+                @Html.DropDownListFor(model => model.Country, CountryItems, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Postcode, new { @class = "col-md-4 control-label" })
+            <div class="col-md-8">
+                @Html.TextBoxFor(m => m.Postcode, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-4 col-md-8">
+                <input type="submit" class="btn btn-default" value="Register" />
+            </div>
+        </div>
+    }
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
