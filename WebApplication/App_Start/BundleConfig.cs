@@ -28,7 +28,9 @@ namespace WebApplication
                       "~/Content/navbar.css",
                       "~/Content/album.css",
                       "~/Content/font-awesome.min.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css",
+                      "~/Content/Styles.css",
+                      "~/Content/Login-Form-Dark.css"));
         }
     }
 }

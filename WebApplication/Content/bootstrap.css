@@ -2629,9 +2629,7 @@ input[type="search"] {
   }
 }
 .form-group {
- height: 50px;
-background: #214a80;
-background-size: cover;
+  margin-bottom: 15px;
 }
 .radio,
 .checkbox {
