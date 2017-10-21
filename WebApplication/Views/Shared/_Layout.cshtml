@@ -22,13 +22,10 @@
 <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
-            <div class="navbar-header">
-                @Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
             <div id="navbar" class="navbar-collapse collapse">
-                <ul class="nav navbar-nav navbar-right">
+                <ul class="nav navbar-nav navbar-left">
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Settings <span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Profile <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li>@Html.ActionLink("Profile", "ProfileView", "Setting", new { area = "" }, new { @class = "" })</li>
                             <li><a href="" onclick="$('#logoutForm').submit(); return false;">Logout</a></li>
@@ -38,12 +35,134 @@
                             }
                         </ul>
                     </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Mail<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Profile", "ProfileView", "Setting", new { area = "" }, new { @class = "" })</li>
+                            <li><a href="" onclick="$('#logoutForm').submit(); return false;">Logout</a></li>
+                            @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "" }))
+                            {
+                                @Html.AntiForgeryToken()
+                            }
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">MarketPlace<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Profile", "ProfileView", "Setting", new { area = "" }, new { @class = "" })</li>
+                            <li><a href="" onclick="$('#logoutForm').submit(); return false;">Logout</a></li>
+                            @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "" }))
+                            {
+                                @Html.AntiForgeryToken()
+                            }
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Webcam<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Profile", "ProfileView", "Setting", new { area = "" }, new { @class = "" })</li>
+                            <li><a href="" onclick="$('#logoutForm').submit(); return false;">Logout</a></li>
+                            @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "" }))
+                            {
+                                @Html.AntiForgeryToken()
+                            }
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">PromoteMe<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Profile", "ProfileView", "Setting", new { area = "" }, new { @class = "" })</li>
+                            <li><a href="" onclick="$('#logoutForm').submit(); return false;">Logout</a></li>
+                            @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "" }))
+                            {
+                                @Html.AntiForgeryToken()
+                            }
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Bookings<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Profile", "ProfileView", "Setting", new { area = "" }, new { @class = "" })</li>
+                            <li><a href="" onclick="$('#logoutForm').submit(); return false;">Logout</a></li>
+                            @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "" }))
+                            {
+                                @Html.AntiForgeryToken()
+                            }
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Search<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Profile", "ProfileView", "Setting", new { area = "" }, new { @class = "" })</li>
+                            <li><a href="" onclick="$('#logoutForm').submit(); return false;">Logout</a></li>
+                            @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "" }))
+                            {
+                                @Html.AntiForgeryToken()
+                            }
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Panics<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Profile", "ProfileView", "Setting", new { area = "" }, new { @class = "" })</li>
+                            <li><a href="" onclick="$('#logoutForm').submit(); return false;">Logout</a></li>
+                            @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "" }))
+                            {
+                                @Html.AntiForgeryToken()
+                            }
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Feedback<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Profile", "ProfileView", "Setting", new { area = "" }, new { @class = "" })</li>
+                            <li><a href="" onclick="$('#logoutForm').submit(); return false;">Logout</a></li>
+                            @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "" }))
+                            {
+                                @Html.AntiForgeryToken()
+                            }
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Mod Settings<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Profile", "ProfileView", "Setting", new { area = "" }, new { @class = "" })</li>
+                            <li><a href="" onclick="$('#logoutForm').submit(); return false;">Logout</a></li>
+                            @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "" }))
+                            {
+                                @Html.AntiForgeryToken()
+                            }
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin Settings<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Profile", "ProfileView", "Setting", new { area = "" }, new { @class = "" })</li>
+                            <li><a href="" onclick="$('#logoutForm').submit(); return false;">Logout</a></li>
+                            @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "" }))
+                            {
+                                @Html.AntiForgeryToken()
+                            }
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Website Help<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Profile", "ProfileView", "Setting", new { area = "" }, new { @class = "" })</li>
+                            <li><a href="" onclick="$('#logoutForm').submit(); return false;">Logout</a></li>
+                            @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "" }))
+                            {
+                                @Html.AntiForgeryToken()
+                            }
+                        </ul>
+                    </li>
+
                 </ul>
             </div>
         </div>
     </nav>
 
-    <nav class="navbar navbar-inverse bg-inverse navbar-toggleable-md">
+    <%nav class="navbar navbar-inverse bg-inverse navbar-toggleable-md">
         <div class="container">
             <div class="collapse navbar-collapse" id="navbarsExampleContainer">
                 <div class="col-md-2">
@@ -65,7 +184,7 @@
                 </div>
             </div>
         </div>
-    </nav>
+    </%nav>
     <div class="container">
         <div class="container body-content">
             @RenderBody()
