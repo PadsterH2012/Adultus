@@ -91,10 +91,10 @@ namespace WebApplication.Models
         [Display(Name = "Picture")]
         public string Picture { get; set; }
 
-        [Display(Name = "Gender")]
+        [Display(Name = "Sexuality")]
         public int Gender { get; set; }
 
-        [Display(Name = "Sexuality")]
+        [Display(Name = "Gender Preference")]
         public int GenderPref { get; set; }
 
         [Display(Name = "Phone Number")]
