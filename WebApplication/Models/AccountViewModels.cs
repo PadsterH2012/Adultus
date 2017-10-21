@@ -109,7 +109,7 @@ namespace WebApplication.Models
         [Display(Name = "City")]
         public string City { get; set; }
 
-        [Display(Name = "Region")]
+        [Display(Name = "County")]
         public string County { get; set; }
 
         [Display(Name = "Country")]
