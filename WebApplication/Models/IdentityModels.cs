@@ -24,14 +24,14 @@ namespace WebApplication.Models
             : base("DefaultConnection", throwIfV1Schema: false)
         {
             //REFME Database.SetInitializer(new MySqlInitializer());//Initalize in mysql database
-            string[] roleNames = { "admin", "client", "member" };
-            var RoleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(this));
+            string[] typeNames = { "admin", "client", "member" };
+            var TypeManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(this));
             IdentityResult roleResult;
-            foreach (var roleName in roleNames)
+            foreach (var typeName in typeNames)
             {
-                if (!RoleManager.RoleExists(roleName))
+                if (!TypeManager.RoleExists(typeName))
                 {
-                    roleResult = RoleManager.Create(new IdentityRole(roleName));
+                    roleResult = TypeManager.Create(new IdentityRole(typeName));
                 }
             }
         }

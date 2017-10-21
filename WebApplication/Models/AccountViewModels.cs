@@ -94,7 +94,7 @@ namespace WebApplication.Models
         [Display(Name = "Gender")]
         public int Gender { get; set; }
 
-        [Display(Name = "Gender Prefrences")]
+        [Display(Name = "Sexuality")]
         public int GenderPref { get; set; }
 
         [Display(Name = "Phone Number")]
