@@ -291,7 +291,6 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="img\background.jpg" />
-    <Content Include="img\star-sky.jpg" />
     <Content Include="Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>
@@ -389,6 +388,8 @@
     <Content Include="Views\Setting\ImageEdit.cshtml" />
     <Content Include="Views\Shared\_LayoutCrop.cshtml" />
     <Content Include="Scripts\states.json" />
+    <Content Include="Views\Setting\Finance.cshtml" />
+    <Content Include="Views\Setting\Mail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
