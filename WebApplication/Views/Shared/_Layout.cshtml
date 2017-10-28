@@ -15,126 +15,127 @@
     <link href="~/Content/bootsnipp.css" rel="stylesheet">
     <link href="~/Content/pagedlist.css" rel="stylesheet">
     <link href="~/Content/Login-Form-Dark.css" rel="stylesheet" />
+    <link href="~/Content/pagelayout.css" rel="stylesheet" />
     <link href="~/Content/styles.css" rel="stylesheet" />
     @Scripts.Render("~/bundles/jquery")
 </head>
 
 <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div id="navbar" class="navbar-collapse collapse">
-                <ul class="nav navbar-nav navbar-left">
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Home<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("Search", "ProfileView", "Setting", new { area = "" }, new { @class = "" })</li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Profile <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("Edit Profile", "ProfileView", "Setting", new { area = "" }, new { @class = "" })</li>
-                            <li>@Html.ActionLink("Edit Gallery", "GalleryEdit", "Setting", new { area = "" }, new { @class = "" })</li>
-                            <li>@Html.ActionLink("Edit Private Gallery", "GalleryEdit", "Setting", new { area = "" }, new { @class = "" })</li>
-                            <li>@Html.ActionLink("Edit Video Gallery", "GalleryEdit", "Setting", new { area = "" }, new { @class = "" })</li>
-                            <li>@Html.ActionLink("Show / Transfer Balance", "Finance", "Setting", new { area = "" }, new { @class = "" })</li>                            
-                            <li><a href="" onclick="$('#logoutForm').submit(); return false;">Logout</a></li>
-                            @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "" }))
-                            {
-                                @Html.AntiForgeryToken()
-                            }
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Mail<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("View Mail", "Mail", "Setting", new { area = "" }, new { @class = "" })</li>
-                            <li>@Html.ActionLink("New Mail", "Mail", "Setting", new { area = "" }, new { @class = "" })</li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Market Place<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("View Items", "ProfileView", "Setting", new { area = "" }, new { @class = "" })</li>
-                            <li>@Html.ActionLink("Purchase Items", "ProfileView", "Setting", new { area = "" }, new { @class = "" })</li>
-                            <li>@Html.ActionLink("Gift Items", "ProfileView", "Setting", new { area = "" }, new { @class = "" })</li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Bookings<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("View Bookings", "ProfileView", "Setting", new { area = "" }, new { @class = "" })</li>
-                            <li>@Html.ActionLink("Make Booking", "ProfileView", "Setting", new { area = "" }, new { @class = "" })</li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Panics<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("View Panics", "ProfileView", "Setting", new { area = "" }, new { @class = "" })</li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Mod<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("Search", "ProfileView", "Setting", new { area = "" }, new { @class = "" })</li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("Assign Permissions", "ProfileView", "Setting", new { area = "" }, new { @class = "" })</li>
-                            <li>@Html.ActionLink("Market Place", "ProfileView", "Setting", new { area = "" }, new { @class = "" })</li>
-                            <li>@Html.ActionLink("Reports", "ProfileView", "Setting", new { area = "" }, new { @class = "" })</li>
-                            <li>@Html.ActionLink("Financial", "ProfileView", "Setting", new { area = "" }, new { @class = "" })</li>
-                            <li>@Html.ActionLink("Mail Admin", "ProfileView", "Setting", new { area = "" }, new { @class = "" })</li>
-                            <li>@Html.ActionLink("User Admin", "ProfileView", "Setting", new { area = "" }, new { @class = "" })</li>
-
-                        </ul>
-                    </li>
-
-                </ul>
-                <div class=text-right>
-                    <a class="btn btn-primary" href="#" role="button">Feedback</a>
-                    <a class="btn btn-danger" href="#" role="button">Panic</a>
-                    <a class="btn btn-info" href="#" role="button">Notification</a>
+    <div id="wrapper">
+        <div id="headerwrap">
+            <div id="header">
+                <p>This is the Header</p>
+            </div>
+        </div>
+        <div id="contentliquid">
+            <div id="contentwrap">
+                <div id="content">
+                    @RenderBody()
                 </div>
             </div>
         </div>
-    </nav>
+        <div id="leftcolumnwrap">
+            <div id="leftcolumn">
+                <div class="area"></div><nav class="main-menu">
+                    <ul>
+                        <li>
+                            <a href="http://justinfarrow.com">
+                                <i class="fa fa-home fa-2x"></i>
+                                <span class="nav-text">
+                                    Dashboard
+                                </span>
+                            </a>
 
-    <nav class="navbar navbar-inverse bg-inverse navbar-toggleable-md">
-        <div class="container">
-            <div class="collapse navbar-collapse" id="navbarsExampleContainer">
-                <div class="col-md-2">
-                </div>
-                <div class="col-md-8">
-                    @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { @class = "form-inline my-md-0" }))
-                    {
-                        <input id="searchString" name="searchString" class="form-control mr-sm-2" style="width:70%" type="text" placeholder="Search">
-                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                    }
-                </div>
-                <div class="col-md-2">
-                    <ul class="navbar-nav mr-auto" style="float:right;">
-                        <li class="nav-item dropdown">
-                            <div class="dropdown-menu" aria-labelledby="dropdown02">
-                            </div>
+                        </li>
+                        <li class="has-subnav">
+                            <a href="#">
+                                <i class="fa fa-laptop fa-2x"></i>
+                                <span class="nav-text">
+                                    UI Components
+                                </span>
+                            </a>
+
+                        </li>
+                        <li class="has-subnav">
+                            <a href="#">
+                                <i class="fa fa-list fa-2x"></i>
+                                <span class="nav-text">
+                                    Forms
+                                </span>
+                            </a>
+
+                        </li>
+                        <li class="has-subnav">
+                            <a href="#">
+                                <i class="fa fa-folder-open fa-2x"></i>
+                                <span class="nav-text">
+                                    Pages
+                                </span>
+                            </a>
+
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-bar-chart-o fa-2x"></i>
+                                <span class="nav-text">
+                                    Graphs and Statistics
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-font fa-2x"></i>
+                                <span class="nav-text">
+                                    Typography and Icons
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-table fa-2x"></i>
+                                <span class="nav-text">
+                                    Tables
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-map-marker fa-2x"></i>
+                                <span class="nav-text">
+                                    Maps
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-info fa-2x"></i>
+                                <span class="nav-text">
+                                    Documentation
+                                </span>
+                            </a>
                         </li>
                     </ul>
-                </div>
+
+                    <ul class="logout">
+                        <li><a href="" onclick="$('#logoutForm').submit(); return false;">Logout</a></li>
+                        @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "" }))
+                        {
+                            @Html.AntiForgeryToken()
+                        }
+                    </ul>
+                </nav>
             </div>
         </div>
-    </nav>
-    <div class="container">
-        <div class="container body-content">
-            @RenderBody()
-            <hr />
-            <footer style="text-align:center;">
-                <p>&copy; @DateTime.Now.Year - Ragthorn</p>
-            </footer>
+        <div id="rightcolumnwrap">
+            <div id="rightcolumn">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla.</p>
+            </div>
         </div>
+        <hr />
+        <footer style="text-align:center;">
+            <p>&copy; @DateTime.Now.Year - Ragthorn</p>
+        </footer>
     </div>
-    
     @Scripts.Render("~/bundles/bootstrap")
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
     @RenderSection("scripts", required: false)

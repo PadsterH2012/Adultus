@@ -285,6 +285,8 @@
     <Content Include="Content\Login-Form-Dark.css" />
     <Content Include="Content\navbar.css" />
     <Content Include="Content\PagedList.css" />
+    <Content Include="Content\pagelayout.css" />
+    <Content Include="Content\reset.css" />
     <Content Include="Content\styles.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -317,6 +319,7 @@
     </Content>
     <Content Include="Scripts\cities.json" />
     <Content Include="Scripts\countries.json" />
+    <None Include="Properties\PublishProfiles\IIS Push test.pubxml" />
     <None Include="Properties\PublishProfiles\IIS Push.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\cropper.common.js" />

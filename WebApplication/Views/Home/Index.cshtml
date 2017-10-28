@@ -6,7 +6,7 @@
 
 @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { @class = "form-inline my-md-0" }))
 {
-    <table class="col-md-8">
+    @*<table class="col-md-8">
         <tr>
             <td>
                 <select id="GenderPref" name="GenderPref" class="form-control version-selector" style="width: 200px; cursor: pointer">
@@ -32,7 +32,7 @@
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </td>
         </tr>
-    </table>
+    </table>*@
 }
 <div class="row" style="height:10px;"></div>
 <div class="album text-muted" style="background-color:#FFFFFF;">
@@ -45,8 +45,9 @@
                 <div class="item-gallery" style="margin-left:5px;margin-right:5px;">
                     <a href="~/userinfoes/Details/@item.Id" title="@item.UserName" data-gallery>
                         <div class="crop" style="width: 120px; float:left;">@item.UserName</div>
+                        <div class="crop" style="float:left;">Email:@item.Email</div>
                         <div class="crop" style="float:left;">Age:@item.age</div>
-                        <div class="crop" style="float:left;">Location:@item.Location</div>
+                        <div class="crop" style="float:left;">City:@item.City</div>
                         <img src="@profilePic" alt="Photo" class="img-rounded" />
                         <div class="crop" style="float:left;">@item.OnlineNote</div>
                     </a>
