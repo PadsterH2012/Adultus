@@ -60,8 +60,8 @@ footer p {
 }
 
 :root {
-    --gallery-item-width: 150px;
-    --gallery-item-height: 150px;
+    --gallery-item-width: 75px;
+    --gallery-item-height: 75px;
 }
 .crop {
     white-space: nowrap;
