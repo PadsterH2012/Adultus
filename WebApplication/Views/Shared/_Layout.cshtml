@@ -37,100 +37,110 @@
         <div id="leftcolumnwrap">
             <div id="leftcolumn">
                 <div class="area"></div><nav class="main-menu">
-                    <ul>
-                        <li>
-                            <a href="http://justinfarrow.com">
-                                <i class="fa fa-home fa-2x"></i>
-                                <span class="nav-text">
-                                    Home
-                                </span>
-                            </a>
+                                            <ul>
+                                                <li>
+                                                    <a href="/LandingPage">
+                                                <i class="fa fa-home fa-2x"></i>
+                                                <span class="nav-text">
+                                                    Home
+                                                </span>
+                                                </a>
 
-                        </li>
-                        <li class="has-subnav">
-                            <a href="#">
-                                <i class="fa fa-user fa-2x"></i>
-                                <span class="nav-text">
-                                    Profile
-                                </span>
-                            </a>
+                                                </li>
+                                                <li class="has-subnav">
+                                                    <a href="Setting/ProfileView">
+                                                        <i class="fa fa-user fa-2x"></i>
+                                                        <span class="nav-text">
+                                                            Profile
+                                                        </span>
+                                                    </a>
 
-                        </li>
-                        <li class="has-subnav">
-                            <a href="#">
-                                <i class="fa fa-envelope fa-2x"></i>
-                                <span class="nav-text">
-                                    Mail
-                                </span>
-                            </a>
+                                                </li>
+                                                <li class="has-subnav">
+                                                    <a href="/Mail">
+                                                        <i class="fa fa-envelope fa-2x"></i>
+                                                        <span class="nav-text">
+                                                            Mail
+                                                        </span>
+                                                    </a>
 
-                        </li>
-                        <li class="has-subnav">
-                            <a href="#">
-                                <i class="fa fa-shopping-cart fa-2x"></i>
-                                <span class="nav-text">
-                                    Market Place
-                                </span>
-                            </a>
+                                                </li>
+                                                <li class="has-subnav">
+                                                    <a href="/MarketPlace">
+                                                        <i class="fa fa-shopping-cart fa-2x"></i>
+                                                        <span class="nav-text">
+                                                            Market Place
+                                                        </span>
+                                                    </a>
 
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="fa fa-calendar-o fa-2x"></i>
-                                <span class="nav-text">
-                                    Bookings
-                                </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="fa fa-exclamation-triangle fa-2x"></i>
-                                <span class="nav-text">
-                                    Panics
-                                </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="fa fa-video-camera fa-2x"></i>
-                                <span class="nav-text">
-                                    Webcam
-                                </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="fa fa-bullhorn fa-2x"></i>
-                                <span class="nav-text">
-                                    PromoteMe
-                                </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="fa fa-cog fa-2x"></i>
-                                <span class="nav-text">
-                                    Mod Settings
-                                </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="fa fa-cogs fa-2x"></i>
-                                <span class="nav-text">
-                                    Admin Settings
-                                </span>
-                            </a>
-                        </li>
-                    </ul>
-
-                    <ul class="logout">
-                        <li><a href="" onclick="$('#logoutForm').submit(); return false;">Logout</a></li>
-                        @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "" }))
-                        {
-                            @Html.AntiForgeryToken()
-                        }
-                    </ul>
+                                                </li>
+                                                <li>
+                                                    <a href="/Bookings">
+                                                        <i class="fa fa-calendar-o fa-2x"></i>
+                                                        <span class="nav-text">
+                                                            Bookings
+                                                        </span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="/Feedback">
+                                                        <i class="fa fa-exclamation-triangle fa-2x"></i>
+                                                        <span class="nav-text">
+                                                            Feedback
+                                                        </span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="/Panics">
+                                                        <i class="fa fa-exclamation-triangle fa-2x"></i>
+                                                        <span class="nav-text">
+                                                            Panics
+                                                        </span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="/Webcam">
+                                                        <i class="fa fa-video-camera fa-2x"></i>
+                                                        <span class="nav-text">
+                                                            Webcam
+                                                        </span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="/PremoteMe">
+                                                        <i class="fa fa-bullhorn fa-2x"></i>
+                                                        <span class="nav-text">
+                                                            PromoteMe
+                                                        </span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="/Modsetting">
+                                                        <i class="fa fa-cog fa-2x"></i>
+                                                        <span class="nav-text">
+                                                            Mod Settings
+                                                        </span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="/Adminsetting">
+                                                        <i class="fa fa-cogs fa-2x"></i>
+                                                        <span class="nav-text">
+                                                            Admin Settings
+                                                        </span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                            <ul class="logout">
+                                                <li>
+                                                    <a href="#" onclick="$('#logoutForm').submit(); return false;">
+                                                        <i class="fa fa-power-off fa-2x"></i>
+                                                        <span class="nav-text">
+                                                            Logout
+                                                        </span>
+                                                    </a>
+                                                </li>
+                                            </ul>
                 </nav>
             </div>
         </div>
