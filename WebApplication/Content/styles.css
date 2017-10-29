@@ -128,3 +128,68 @@ height: 100%;
   font-weight: 300;
   src: local('Titillium WebLight'), local('TitilliumWeb-Light'), url(http://themes.googleusercontent.com/static/fonts/titilliumweb/v2/anMUvcNT0H1YN4FII8wpr24bNCNEoFTpS2BTjF6FB5E.woff) format('woff');
 }
+html, body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* define a fixed width for the entire menu */
+.navigation {
+  width: 160px;
+}
+/* reset our lists to remove bullet points and padding */
+.mainmenu, .submenu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  background:#C5C5C5;
+font-size: 11px;
+font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+/* make ALL links (main and submenu) have padding and background color */
+.mainmenu a {
+  display: block;
+  background-color: #333;
+  text-decoration: none;
+  padding: 10px;
+  color: #8a919b;
+}
+
+/* add hover behaviour */
+.mainmenu a:hover {
+    background-color: #337ab7;
+}
+
+
+/* when hovering over a .mainmenu item,
+  display the submenu inside it.
+  we're changing the submenu's max-height from 0 to 200px;
+*/
+
+.mainmenu li:hover .submenu {
+  display: block;
+  max-height: 300px;
+}
+
+/*
+  we now overwrite the background-color for .submenu links only.
+  CSS reads down the page, so code at the bottom will overwrite the code at the top.
+*/
+
+.submenu a {
+  background-color: #515151;
+}
+
+/* hover behaviour for links inside .submenu Blue */ 
+.submenu a:hover {
+  background-color: #337ab7;
+}
+
+/* this is the initial state of all submenus.
+  we set it to max-height: 0, and hide the overflowed content.
+*/
+.submenu {
+  overflow: hidden;
+  max-height: 0;
+  -webkit-transition: all 0.5s ease-out;
+}

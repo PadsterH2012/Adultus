@@ -38,7 +38,7 @@ p {
 }
 
 #contentwrap {
-    margin-left: 150px;
+    margin-left: 160px;
     margin-right: 200px;
     float: left;
 }
@@ -61,8 +61,8 @@ p {
 
 #leftcolumn {
     background: #333;
-    border-radius: 10px;
-    border: 1px solid ;
+    border-radius: 0px;
+    border: 0px solid ;
     margin: 5px;
 }
 
