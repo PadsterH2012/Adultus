@@ -1,5 +1,4 @@
 @import url(//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css);
-}
 @import url(https://fonts.googleapis.com/css?family=Titillium+Web:300);
 /*.fa-2x {
 font-size: 2em;
@@ -143,7 +142,7 @@ html, body {
   margin: 0;
   background:#C5C5C5;
 font-size: 12px;
-font-family: Verdana, Arial, Helvetica, sans-serif;
+font-family: 'Titillium Web',Verdana, Arial, Helvetica, sans-serif;
 text-align: left;
 }
 
