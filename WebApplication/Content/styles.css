@@ -139,11 +139,11 @@ html, body {
 .mainmenu, .submenu {
   list-style: none;
   padding: 0;
-  margin: 0;
+  margin: auto;
   background:#C5C5C5;
-font-size: 12px;
+font-size: 14px;
 font-family: 'Titillium Web',Verdana, Arial, Helvetica, sans-serif;
-text-align: left;
+text-align: match-parent;
 }
 
 /* make ALL links (main and submenu) have padding and background color */
@@ -153,6 +153,7 @@ text-align: left;
   text-decoration: none;
   padding: 9px;
   color: #8a919b;
+
 }
 
 /* add hover behaviour */
