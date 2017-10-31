@@ -150,7 +150,10 @@
                                 <span class="nav-text"> Logoff</span>
                             </a>
                         </li>
-                        
+                        @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "" }))
+                        {
+                            @Html.AntiForgeryToken()
+                        }
                     </ul>
                 </nav>
                 @*<nav class="main-menu">
