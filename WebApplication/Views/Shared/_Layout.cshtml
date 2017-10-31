@@ -68,8 +68,7 @@
                                 <span class="nav-text"> Messages</span>
                             </a>
                             <ul class="submenu">
-                                @*<li><a href="">View Mail</a></li>*@
-                                @Html.ActionLink("View Mail ", "Mail", "Setting", new { area = "" }, new { @class = "" });
+                                <li>@Html.ActionLink("View Mail", "Mail", "Setting", new { area = "" }, new { @class = "" })</li>
                                 <li><a href="/Setting/Mail">New Mail</a></li>
                             </ul>
                         </li>
@@ -80,7 +79,7 @@
                                 <span class="nav-text"> Webcam</span>
                             </a>
                             <ul class="submenu">
-                                <li><a href="/Setting/Webcam">View Webcam</a></li>
+                                <li>@Html.ActionLink("View Webcam", "Webcam", "Setting", new { area = "" }, new { @class = "" })</li>
                             </ul>
                         </li>
 
@@ -90,7 +89,7 @@
                                 <span class="nav-text"> PromoteMe</span>
                             </a>
                             <ul class="submenu">
-                                <li><a href="">Spotlight Me</a></li>
+                                <li>@Html.ActionLink("SpotlightMe", "Spotlight", "Setting", new { area = "" }, new { @class = "" })</li>
                             </ul>
                         </li>
 
@@ -98,7 +97,7 @@
                             <a href=""><i class="fa fa-shopping-cart fa-lg fa-fw"></i>
                                 <span class="nav-text"> Market Place</span></a>
                             <ul class="submenu">
-                                <li><a href="">View Items</a></li>
+                                <li>@Html.ActionLink("View Item", "MarketPlaceItems", "Setting", new { area = "" }, new { @class = "" })</li>
                                 <li><a href="">Purchase Items</a></li>
                                 <li><a href="">Gift Items</a></li>
                             </ul>
@@ -109,7 +108,7 @@
                                 <span class="nav-text"> Bookings</span>
                             </a>
                             <ul class="submenu">
-                                <li><a href="">View Bookings</a></li>
+                                <li>@Html.ActionLink("View Bookings", "Bookings", "Setting", new { area = "" }, new { @class = "" })</li>
                                 <li><a href="">Make Bookings</a></li>
                             </ul>
                         </li>
@@ -119,8 +118,8 @@
                                 <span class="nav-text"> Alerts</span>
                             </a>
                             <ul class="submenu">
-                                <li><a href="">View Feedback</a></li>
-                                <li><a href="">View Panics</a></li>
+                                <li>@Html.ActionLink("View Feedback", "Feedback", "Setting", new { area = "" }, new { @class = "" })</li>
+                                <li>@Html.ActionLink("View Panics", "Panics", "Setting", new { area = "" }, new { @class = "" })</li>
                             </ul>
                         </li>
                         <li>
@@ -129,7 +128,7 @@
                                 <span class="nav-text"> Mod Settings</span>
                             </a>
                             <ul class="submenu">
-                                <li><a href="">User Search</a></li>
+                                <li>@Html.ActionLink("Mod Settings", "ModSettings", "Setting", new { area = "" }, new { @class = "" })</li>
                             </ul>
                         </li>
                         <li>
@@ -138,13 +137,13 @@
                                 <span class="nav-text"> Admin Settings</span>
                             </a>
                             <ul class="submenu">
-                                <li><a href="">Permissions</a></li>
-                                <li><a href="">Market Admin</a></li>
-                                <li><a href="">Reports</a></li>
-                                <li><a href="~/Views/Setting/Finance.cshtml">Finance</a></li>
-                                <li><a href="">Mail Admin</a></li>
-                                <li><a href="">User Admin</a></li>
-                                <li><a href="">Settings</a></li>
+                                <li>@Html.ActionLink("Permissions", "Permissions", "Setting", new { area = "" }, new { @class = "" })</li>
+                                <li>@Html.ActionLink("Market Admin", "MarketAdmin", "Setting", new { area = "" }, new { @class = "" })</li>
+                                <li>@Html.ActionLink("Reports", "Reports", "Setting", new { area = "" }, new { @class = "" })</li>
+                                <li>@Html.ActionLink("Finance", "Finance", "Setting", new { area = "" }, new { @class = "" })</li>
+                                <li>@Html.ActionLink("Mail Admin", "MailAdmin", "Setting", new { area = "" }, new { @class = "" })</li>
+                                <li>@Html.ActionLink("User Admin", "UserAdmin", "Setting", new { area = "" }, new { @class = "" })</li>
+                                <li>@Html.ActionLink("Settings", "AdminSettings", "Setting", new { area = "" }, new { @class = "" })</li>
                             </ul>
                         </li>
                         <li><a href=""onclick="$('#logoutForm').submit(); return false;"><i class="fa fa-power-off fa-lg fa-fw"></i>
