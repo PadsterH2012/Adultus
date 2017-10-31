@@ -54,7 +54,7 @@
                                 <span class="nav-text"> Profile</span>
                             </a>
                             <ul class="submenu">
-                                <li><a href="/Setting/ProfileView">Edit Profile</a></li>
+                                <li>@Html.ActionLink("Edit Profile", "ProfileView", "Setting", new { area = "" }, new { @class = "" })</li>
                                 <li><a href="/Setting/ProfileView?mode=1">Edit Gallery</a></li>
                                 <li><a href="/Setting/ProfileView?mode=2">Edit Pvt Gallery</a></li>
                                 <li><a href="~/Views/Setting/ProfileView.cshtml">Edit Video Gallery</a></li>
@@ -68,7 +68,8 @@
                                 <span class="nav-text"> Messages</span>
                             </a>
                             <ul class="submenu">
-                                <li><a href="/Setting/Mail">View Mail</a></li>
+                                @*<li><a href="">View Mail</a></li>*@
+                                @Html.ActionLink("View Mail ", "Mail", "Setting", new { area = "" }, new { @class = "" });
                                 <li><a href="/Setting/Mail">New Mail</a></li>
                             </ul>
                         </li>
@@ -79,7 +80,7 @@
                                 <span class="nav-text"> Webcam</span>
                             </a>
                             <ul class="submenu">
-                                <li><a href="">View Webcam</a></li>
+                                <li><a href="/Setting/Webcam">View Webcam</a></li>
                             </ul>
                         </li>
 
@@ -140,7 +141,7 @@
                                 <li><a href="">Permissions</a></li>
                                 <li><a href="">Market Admin</a></li>
                                 <li><a href="">Reports</a></li>
-                                <li><a href="">Finance</a></li>
+                                <li><a href="~/Views/Setting/Finance.cshtml">Finance</a></li>
                                 <li><a href="">Mail Admin</a></li>
                                 <li><a href="">User Admin</a></li>
                                 <li><a href="">Settings</a></li>

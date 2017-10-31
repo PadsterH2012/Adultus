@@ -393,6 +393,7 @@
     <Content Include="Scripts\states.json" />
     <Content Include="Views\Setting\Finance.cshtml" />
     <Content Include="Views\Setting\Mail.cshtml" />
+    <Content Include="Views\Setting\Webcam.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
