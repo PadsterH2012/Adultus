@@ -54,11 +54,11 @@
                                 <span class="nav-text"> Profile</span>
                             </a>
                             <ul class="submenu">
-                                <li><a href="">Edit Profile</a></li>
-                                <li><a href="">Edit Gallery</a></li>
-                                <li><a href="">Edit Pvt Gallery</a></li>
-                                <li><a href="">Edit Video Gallery</a></li>
-                                <li><a href="">Show / Transfer Balance</a></li>
+                                <li><a href="/Setting/ProfileView">Edit Profile</a></li>
+                                <li><a href="/Setting/ProfileView?mode=1">Edit Gallery</a></li>
+                                <li><a href="/Setting/ProfileView?mode=2">Edit Pvt Gallery</a></li>
+                                <li><a href="~/Views/Setting/ProfileView.cshtml">Edit Video Gallery</a></li>
+                                <li><a href="~/Views/Setting/ProfileView.cshtml">Show / Transfer Balance</a></li>
                             </ul>
                         </li>
 
@@ -68,8 +68,8 @@
                                 <span class="nav-text"> Messages</span>
                             </a>
                             <ul class="submenu">
-                                <li><a href="">View Mail</a></li>
-                                <li><a href="">New Mail</a></li>
+                                <li><a href="~/Views/Setting/mail.cshtml">View Mail</a></li>
+                                <li><a href="~/Views/Setting/mail.cshtml">New Mail</a></li>
                             </ul>
                         </li>
 
@@ -146,7 +146,7 @@
                                 <li><a href="">Settings</a></li>
                             </ul>
                         </li>
-                        <li><a href=""><i class="fa fa-power-off fa-2x"></i>
+                        <li><a href=""onclick="$('#logoutForm').submit(); return false;"><i class="fa fa-power-off fa-2x"></i>
                                 <span class="nav-text"> Logoff</span>
                             </a>
                         </li>
