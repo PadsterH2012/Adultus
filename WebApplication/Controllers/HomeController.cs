@@ -43,11 +43,14 @@ namespace WebApplication.Controllers
 
             aspnetuserclaim aspUserClaim = new aspnetuserclaim();
             aspUserClaim = db.aspnetuserclaims.Where(i => i.UserId == userID).Single();
-            IEnumerable<userlist> userList = new IEnumerable;
-            HomeViewModel homeViewModel = new HomeViewModel();
-            homeViewModel.userList.AddRange(userList);
-            homeViewModel.aspUserClaim = aspUserClaim;
-            return View(users.ToPagedList(pageNumber, pagesize));
+            IEnumerable<userlist> userList = users;
+            IPagedList<HomeViewModel> homeViewModel = null;//new[] { new HomeViewModel { userList = users.ToList(), aspUserClaim = aspUserClaim } };
+            List<HomeViewModel> homeViewModelList = new List<HomeViewModel>();
+            HomeViewModel item = new HomeViewModel();
+            item.userList = users.ToList();
+            item.aspUserClaim = aspUserClaim;
+            homeViewModelList.Add(item);
+            return View(homeViewModelList.ToPagedList(pageNumber, pagesize));
         }
 
         public ActionResult About()
