@@ -11,7 +11,8 @@ namespace WebApplication
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Data.Entity;
+
     public partial class userlist
     {
         public string Id { get; set; }
@@ -34,5 +35,6 @@ namespace WebApplication
         public string OnlineNote { get; set; }
         public string Ethnicity { get; set; }
         public string Interests { get; set; }
+        
     }
 }

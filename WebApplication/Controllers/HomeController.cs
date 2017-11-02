@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using PagedList;
+using WebApplication.Models;
+using Microsoft.AspNet.Identity;
 
 namespace WebApplication.Controllers
 {
@@ -36,6 +38,15 @@ namespace WebApplication.Controllers
             int pagesize = 10;
             ViewBag.pagesize = pagesize;
             int pageNumber = (page ?? 1);
+
+            var userID = User.Identity.GetUserId();
+
+            aspnetuserclaim aspUserClaim = new aspnetuserclaim();
+            aspUserClaim = db.aspnetuserclaims.Where(i => i.UserId == userID).Single();
+            IEnumerable<userlist> userList = new IEnumerable;
+            HomeViewModel homeViewModel = new HomeViewModel();
+            homeViewModel.userList.AddRange(userList);
+            homeViewModel.aspUserClaim = aspUserClaim;
             return View(users.ToPagedList(pageNumber, pagesize));
         }
 

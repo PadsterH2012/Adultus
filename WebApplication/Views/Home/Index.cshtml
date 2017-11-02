@@ -1,5 +1,4 @@
-﻿@model PagedList.IPagedList<WebApplication.userlist>
-@using PagedList.Mvc
+﻿@model WebApplication.Models.HomeViewModel
 @{
     ViewBag.Title = "Home Page";
 }
@@ -38,7 +37,7 @@
 <div class="album text-muted" style="background-color:#FFFFFF;">
     <div class="container">
         <div class="row">
-            @foreach (var item in Model)
+            @foreach (var item in Model.userList)
             {
                 String profilePic = "/Content/UserPicture/"+@item.Profile_Pic;
                 if (!File.Exists(Server.MapPath("/Content/UserPicture/") + @item.Profile_Pic)) profilePic = "/Image/man.svg";
@@ -55,12 +54,12 @@
             }
         </div>
         <div class="row">
-            @if (@Model.PageCount > 1)
+            @*@if (@PageCount > 1)
             {
                 <table align="center">
                     <tr>
                         <td>
-                            @Html.PagedListPager(Model, page => Url.Action("Index",
+                            @Html.PagedListPager(Model.userList, page => Url.Action("Index",
                                 new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
                         </td>
                         <td>
@@ -68,7 +67,7 @@
                         </td>
                     </tr>
                 </table>
-            }
+            }*@
         </div>
     </div>
 </div>
