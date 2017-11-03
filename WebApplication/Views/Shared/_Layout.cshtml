@@ -46,7 +46,7 @@
                         <li>
                             <a href="">
                                 <i class="fa fa-home fa-lg fa-fw text-center"></i><span class="nav-text"> Home</span>
-                                </a>
+                            </a>
                         </li>
                         <li>
                             <a href="">
@@ -67,10 +67,8 @@
                                 <i class="fa fa-envelope fa-lg fa-fw"></i>
                                 <span class="nav-text"> Messages</span>
                             </a>
-                            <ul class="submenu">
-                                <li>@Html.ActionLink("View Mail", "Mail", "Setting", new { area = "" }, new { @class = "" })</li>
-                                <li><a href="/Setting/Mail">New Mail</a></li>
-                            </ul>
+                        <li>@Html.ActionLink("View Mail", "Mail", "Setting", new { area = "" }, new { @class = "" })</li>
+
                         </li>
 
                         <li>
@@ -105,8 +103,10 @@
                             </a>
                         </li>
                         <li>
-                            <a href=""><i class="fa fa-shopping-cart fa-lg fa-fw"></i>
-                                <span class="nav-text"> Market Place</span></a>
+                            <a href="">
+                                <i class="fa fa-shopping-cart fa-lg fa-fw"></i>
+                                <span class="nav-text"> Market Place</span>
+                            </a>
                             <ul class="submenu">
                                 <li>@Html.ActionLink("View Item", "MarketPlaceItems", "Setting", new { area = "" }, new { @class = "" })</li>
                                 <li><a href="">Purchase Items</a></li>
@@ -179,7 +179,9 @@
                                 <li>@Html.ActionLink("Settings", "AdminSettings", "Setting", new { area = "" }, new { @class = "" })</li>
                             </ul>
                         </li>
-                        <li><a href=""onclick="$('#logoutForm').submit(); return false;"><i class="fa fa-power-off fa-lg fa-fw"></i>
+                        <li>
+                            <a href="" onclick="$('#logoutForm').submit(); return false;">
+                                <i class="fa fa-power-off fa-lg fa-fw"></i>
                                 <span class="nav-text"> Logoff</span>
                             </a>
                         </li>
