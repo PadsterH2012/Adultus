@@ -92,6 +92,16 @@
                                 <li>@Html.ActionLink("SpotlightMe", "Spotlight", "Setting", new { area = "" }, new { @class = "" })</li>
                             </ul>
                         </li>
+                        <li>
+                            <a href="">
+                                <i class="fa fa-users fa-lg fa-fw"></i>
+                                <span class="nav-text"> Agency</span>
+                            </a>
+                            <ul class="submenu">
+                                <li>@Html.ActionLink("Agency Member", "AgencyMember", "Setting", new { area = "" }, new { @class = "" })</li>
+                                <li>@Html.ActionLink("Agency Owner", "AgencyOwner", "Setting", new { area = "" }, new { @class = "" })</li>
+                            </ul>
+                        </li>
 
                         <li>
                             <a href=""><i class="fa fa-shopping-cart fa-lg fa-fw"></i>
@@ -146,7 +156,17 @@
                                 <span class="nav-text"> Mod Settings</span>
                             </a>
                             <ul class="submenu">
-                                <li>@Html.ActionLink("Mod Settings", "ModSettings", "Setting", new { area = "" }, new { @class = "" })</li>
+                                <li>@Html.ActionLink("Temp Ban", "tempban", "Setting", new { area = "" }, new { @class = "" })</li>
+                                <li>@Html.ActionLink("Ban / un-Ban", "24hrban", "Setting", new { area = "" }, new { @class = "" })</li>
+                                <li>@Html.ActionLink("Disable/Enable Account", "24hrban", "Setting", new { area = "" }, new { @class = "" })</li>
+                                <li>@Html.ActionLink("Temp 24 hr Ban", "24hrban", "Setting", new { area = "" }, new { @class = "" })</li>
+                                <li>@Html.ActionLink("72hr Delete", "72hrdelete", "Setting", new { area = "" }, new { @class = "" })</li>
+                                <li>@Html.ActionLink("User Info Report", "UserInfoReport", "Setting", new { area = "" }, new { @class = "" })</li>
+                                <li>@Html.ActionLink("Account History", "Accounthistory", "Setting", new { area = "" }, new { @class = "" })</li>
+                                <li>@Html.ActionLink("Instant Delete", "InstantDelete", "Setting", new { area = "" }, new { @class = "" })</li>
+                                <li>@Html.ActionLink("View Mail", "ViewMail", "Setting", new { area = "" }, new { @class = "" })</li>
+                                <li>@Html.ActionLink("Flag Account", "FlagAccount", "Setting", new { area = "" }, new { @class = "" })</li>
+
                             </ul>
                         </li>
                         <li>
