@@ -26,12 +26,19 @@ namespace WebApplication.Controllers
             return View("ImageEdit", "_LayoutCrop");
         }
 
+        public ActionResult Mail()
+        {
+            return View("Mail", "_LayoutCrop");
+        }
+
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> ProfileView(int? mode)
         {
             if (mode == null) mode = 0;
             ViewBag.mode = mode;
             String userID = User.Identity.GetUserId();
             if (userID == null || userID.Length == 0) return View();
+            aspnetuserclaim aspUserClaim = db.aspnetuserclaims.Where(i => i.UserId == userID).Single();
 
             switch (mode)
             {
@@ -44,7 +51,7 @@ namespace WebApplication.Controllers
                         aspnetuser aspnetUserInfo = await db.aspnetusers.SqlQuery(query).SingleOrDefaultAsync();
 
                         Models.RegisterViewModel model = new Models.RegisterViewModel();
-                        
+                       
                         model.Email = User.Identity.Name;
                         //model.Password = "";
                         //model.ConfirmPassword = "";

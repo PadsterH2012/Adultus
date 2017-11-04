@@ -1,316 +1,310 @@
-﻿<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <title>Ragthorn</title>
+<!DOCTYPE html>
+@model PagedList.IPagedList<WebApplication.Models.HomeViewModel>
+    <html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <title>Ragthorn</title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="~/Content/album.css" rel="stylesheet">
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet">
-    <link href="~/Content/navbar.css" rel="stylesheet">
-    <link href="~/Content/font-awesome.min.css" rel="stylesheet">
-    <link href="~/Content/bootsnipp.css" rel="stylesheet">
-    <link href="~/Content/pagedlist.css" rel="stylesheet">
-    <link href="~/Content/Login-Form-Dark.css" rel="stylesheet" />
-    <link href="~/Content/pagelayout.css" rel="stylesheet" />
-    <link href="~/Content/styles.css" rel="stylesheet" />
-    @Scripts.Render("~/bundles/jquery")
-</head>
+        <!-- Bootstrap core CSS -->
+        <link href="~/Content/album.css" rel="stylesheet">
+        <link href="~/Content/bootstrap.min.css" rel="stylesheet">
+        <link href="~/Content/navbar.css" rel="stylesheet">
+        <link href="~/Content/font-awesome.min.css" rel="stylesheet">
+        <link href="~/Content/bootsnipp.css" rel="stylesheet">
+        <link href="~/Content/pagedlist.css" rel="stylesheet">
+        <link href="~/Content/Login-Form-Dark.css" rel="stylesheet" />
+        <link href="~/Content/pagelayout.css" rel="stylesheet" />
+        <link href="~/Content/styles.css" rel="stylesheet" />
+        @Scripts.Render("~/bundles/jquery")
+    </head>
 
-<body>
-    <div id="wrapper">
-        <div id="headerwrap">
-            <div id="header">
-                <div class=text-right>
-                    <a class="btn btn-primary" href="#" role="button">Feedback</a>
-                    <a class="btn btn-danger" href="#" role="button">Panic</a>
-                    <a class="btn btn-info" href="#" role="button">Notification</a>
+    <body>
+        <div id="wrapper">
+            <div id="headerwrap">
+                <div id="header">
+                    <div class=text-right>
+                        <a class="btn btn-primary" href="#" role="button">Feedback</a>
+                        <a class="btn btn-danger" href="#" role="button">Panic</a>
+                        <a class="btn btn-info" href="#" role="button">Notification</a>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div id="contentliquid">
-            <div id="contentwrap">
-                <div id="content">
-                    @RenderBody()
+            <div id="contentliquid">
+                <div id="contentwrap">
+                    <div id="content">
+                        @RenderBody()
+                    </div>
                 </div>
             </div>
-        </div>
-        <div id="leftcolumnwrap">
-            <div id="leftcolumn">
-                <div class="area"></div>
-                <nav class="navigation">
-                    <ul class="mainmenu">
-                        <li>
-                            <a href="">
-                                <i class="fa fa-home fa-lg fa-fw text-center"></i><span class="nav-text"> Home</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="">
-                                <i class="fa fa-user fa-lg fa-fw"></i>
-                                <span class="nav-text"> Profile</span>
-                            </a>
-                            <ul class="submenu">
-                                <li>@Html.ActionLink("Edit Profile", "ProfileView", "Setting", new { area = "" }, new { @class = "" })</li>
-                                <li><a href="/Setting/ProfileView?mode=1">Edit Gallery</a></li>
-                                <li><a href="/Setting/ProfileView?mode=2">Edit Pvt Gallery</a></li>
-                                <li><a href="~/Views/Setting/ProfileView.cshtml">Edit Video Gallery</a></li>
-                                <li><a href="~/Views/Setting/ProfileView.cshtml">Show / Transfer Balance</a></li>
-                            </ul>
-                        </li>
+            <div id="leftcolumnwrap">
+                <div id="leftcolumn">
+                    <div class="area"></div>
+                    <nav class="navigation">
+                        <ul class="mainmenu">
+                            <li>
+                                <a href="">
+                                    <i class="fa fa-home fa-lg fa-fw text-center"></i><span class="nav-text"> Home</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="">
+                                    <i class="fa fa-user fa-lg fa-fw"></i>
+                                    <span class="nav-text"> Profile</span>
+                                </a>
+                                <ul class="submenu">
+                                    <li>@Html.ActionLink("Edit Profile", "ProfileView", "Setting", new { area = "" }, new { @class = "" })</li>
+                                    <li><a href="/Setting/ProfileView?mode=1">Edit Gallery</a></li>
+                                    <li><a href="/Setting/ProfileView?mode=2">Edit Pvt Gallery</a></li>
+                                    <li><a href="~/Views/Setting/ProfileView.cshtml">Edit Video Gallery</a></li>
+                                    <li><a href="~/Views/Setting/ProfileView.cshtml">Show / Transfer Balance</a></li>
+                                </ul>
+                            </li>
 
-                        <li>
-                            <a href="">
-                                <i class="fa fa-envelope fa-lg fa-fw"></i>
-                                <span class="nav-text"> Messages</span>
-                            </a>
-                        <li>@Html.ActionLink("View Mail", "Mail", "Setting", new { area = "" }, new { @class = "" })</li>
+                            <li>
+                                <a href="">
+                                    <i class="fa fa-envelope fa-lg fa-fw"></i>
+                                    <span class="nav-text"> Messages</span>
+                                </a>
+                                <ul class="submenu">
+                                    <li>@Html.ActionLink("View Mail", "Mail", "Setting", new { area = "" }, new { @class = "" })</li>
+                                    <li><a href="/Setting/Mail">New Mail</a></li>
+                                </ul>
+                            </li>
 
-                        </li>
+                            <li>
+                                <a href="">
+                                    <i class="fa fa-video-camera fa-lg fa-fw"></i>
+                                    <span class="nav-text"> Webcam</span>
+                                </a>
+                                <ul class="submenu">
+                                    <li>@Html.ActionLink("View Webcam", "Webcam", "Setting", new { area = "" }, new { @class = "" })</li>
+                                </ul>
+                            </li>
 
-                        <li>
-                            <a href="">
-                                <i class="fa fa-video-camera fa-lg fa-fw"></i>
-                                <span class="nav-text"> Webcam</span>
-                            </a>
-                            <ul class="submenu">
-                                <li>@Html.ActionLink("View Webcam", "Webcam", "Setting", new { area = "" }, new { @class = "" })</li>
-                            </ul>
-                        </li>
+                            <li>
+                                <a href="">
+                                    <i class="fa fa-bullhorn fa-lg fa-fw"></i>
+                                    <span class="nav-text"> PromoteMe</span>
+                                </a>
+                                <ul class="submenu">
+                                    <li>@Html.ActionLink("SpotlightMe", "Spotlight", "Setting", new { area = "" }, new { @class = "" })</li>
+                                </ul>
+                            </li>
 
-                        <li>
-                            <a href="">
-                                <i class="fa fa-bullhorn fa-lg fa-fw"></i>
-                                <span class="nav-text"> PromoteMe</span>
-                            </a>
-                            <ul class="submenu">
-                                <li>@Html.ActionLink("SpotlightMe", "Spotlight", "Setting", new { area = "" }, new { @class = "" })</li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="">
-                                <i class="fa fa-users fa-lg fa-fw"></i>
-                                <span class="nav-text"> Agency Member</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="">
-                                <i class="fa fa-users fa-lg fa-fw"></i>
-                                <span class="nav-text"> Agency Owner</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="">
-                                <i class="fa fa-shopping-cart fa-lg fa-fw"></i>
-                                <span class="nav-text"> Market Place</span>
-                            </a>
-                            <ul class="submenu">
-                                <li>@Html.ActionLink("View Item", "MarketPlaceItems", "Setting", new { area = "" }, new { @class = "" })</li>
-                                <li><a href="">Purchase Items</a></li>
-                                <li><a href="">Gift Items</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="">
-                                <i class="fa fa-calendar-o fa-lg fa-fw"></i>
-                                <span class="nav-text"> Bookings</span>
-                            </a>
-                            <ul class="submenu">
-                                <li>@Html.ActionLink("View Bookings", "Bookings", "Setting", new { area = "" }, new { @class = "" })</li>
-                                <li><a href="">Make Bookings</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="">
-                                <i class="fa fa-exclamation-triangle fa-lg fa-fw"></i>
-                                <span class="nav-text"> Alerts</span>
-                            </a>
-                            <ul class="submenu">
-                                <li>@Html.ActionLink("View Feedback", "Feedback", "Setting", new { area = "" }, new { @class = "" })</li>
-                                <li>@Html.ActionLink("View Panics", "Panics", "Setting", new { area = "" }, new { @class = "" })</li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="">
-                                <i class="fa fa-cog fa-lg fa-fw"></i>
-                                <span class="nav-text"> Client Settings</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="">
-                                <i class="fa fa-cog fa-lg fa-fw"></i>
-                                <span class="nav-text"> Member Settings</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="">
-                                <i class="fa fa-cog fa-lg fa-fw"></i>
-                                <span class="nav-text"> Mod Settings</span>
-                            </a>
-                            <ul class="submenu">
-                                <li>@Html.ActionLink("Temp Ban", "tempban", "Setting", new { area = "" }, new { @class = "" })</li>
-                                <li>@Html.ActionLink("Ban / un-Ban", "24hrban", "Setting", new { area = "" }, new { @class = "" })</li>
-                                <li>@Html.ActionLink("Disable/Enable Account", "24hrban", "Setting", new { area = "" }, new { @class = "" })</li>
-                                <li>@Html.ActionLink("Temp 24 hr Ban", "24hrban", "Setting", new { area = "" }, new { @class = "" })</li>
-                                <li>@Html.ActionLink("72hr Delete", "72hrdelete", "Setting", new { area = "" }, new { @class = "" })</li>
-                                <li>@Html.ActionLink("User Info Report", "UserInfoReport", "Setting", new { area = "" }, new { @class = "" })</li>
-                                <li>@Html.ActionLink("Account History", "Accounthistory", "Setting", new { area = "" }, new { @class = "" })</li>
-                                <li>@Html.ActionLink("Instant Delete", "InstantDelete", "Setting", new { area = "" }, new { @class = "" })</li>
-                                <li>@Html.ActionLink("View Mail", "ViewMail", "Setting", new { area = "" }, new { @class = "" })</li>
-                                <li>@Html.ActionLink("Flag Account", "FlagAccount", "Setting", new { area = "" }, new { @class = "" })</li>
+                            <li>
+                                <a href="">
+                                    <i class="fa fa-shopping-cart fa-lg fa-fw"></i>
+                                    <span class="nav-text"> Market Place</span>
+                                </a>
+                                <ul class="submenu">
+                                    <li>@Html.ActionLink("View Item", "MarketPlaceItems", "Setting", new { area = "" }, new { @class = "" })</li>
+                                    <li><a href="">Purchase Items</a></li>
+                                    <li><a href="">Gift Items</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="">
+                                    <i class="fa fa-calendar-o fa-lg fa-fw"></i>
+                                    <span class="nav-text"> Bookings</span>
+                                </a>
+                                <ul class="submenu">
+                                    <li>@Html.ActionLink("View Bookings", "Bookings", "Setting", new { area = "" }, new { @class = "" })</li>
+                                    <li><a href="">Make Bookings</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="">
+                                    <i class="fa fa-exclamation-triangle fa-lg fa-fw"></i>
+                                    <span class="nav-text"> Alerts</span>
+                                </a>
+                                <ul class="submenu">
+                                    <li>@Html.ActionLink("View Feedback", "Feedback", "Setting", new { area = "" }, new { @class = "" })</li>
+                                    <li>@Html.ActionLink("View Panics", "Panics", "Setting", new { area = "" }, new { @class = "" })</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="">
+                                    <i class="fa fa-cog fa-lg fa-fw"></i>
+                                    <span class="nav-text"> Client Settings</span>
+                                </a>
+                                <ul class="submenu">
+                                    <li>@Html.ActionLink("Client Settings", "ClientSettings", "Setting", new { area = "" }, new { @class = "" })</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="">
+                                    <i class="fa fa-cog fa-lg fa-fw"></i>
+                                    <span class="nav-text"> Member Settings</span>
+                                </a>
+                                <ul class="submenu">
+                                    <li>@Html.ActionLink("Member Settings", "MemberSettings", "Setting", new { area = "" }, new { @class = "" })</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="">
+                                    <i class="fa fa-cog fa-lg fa-fw"></i>
+                                    <span class="nav-text"> Mod Settings</span>
+                                </a>
+                                <ul class="submenu">
+                                    <li>@Html.ActionLink("Mod Settings", "ModSettings", "Setting", new { area = "" }, new { @class = "" })</li>
+                                </ul>
+                            </li>
+                            <li>
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    if (Model.Single().aspUserClaim.ClaimType == "1")
+                                    {
+                                        <a href="">
+                                            <i class="fa fa-cogs fa-lg fa-fw"></i>
+                                            <span class="nav-text"> Admin Settings</span>
+                                        </a>
+                                        <ul class="submenu">
+                                            <li>@Html.ActionLink("Permissions", "Permissions", "Setting", new { area = "" }, new { @class = "" })</li>
+                                            <li>@Html.ActionLink("Market Admin", "MarketAdmin", "Setting", new { area = "" }, new { @class = "" })</li>
+                                            <li>@Html.ActionLink("Reports", "Reports", "Setting", new { area = "" }, new { @class = "" })</li>
+                                            <li>@Html.ActionLink("Finance", "Finance", "Setting", new { area = "" }, new { @class = "" })</li>
+                                            <li>@Html.ActionLink("Mail Admin", "MailAdmin", "Setting", new { area = "" }, new { @class = "" })</li>
+                                            <li>@Html.ActionLink("User Admin", "UserAdmin", "Setting", new { area = "" }, new { @class = "" })</li>
+                                            <li>@Html.ActionLink("Settings", "AdminSettings", "Setting", new { area = "" }, new { @class = "" })</li>
+                                        </ul>
+                                    }
+                                }
+                            </li>
+                            <li>
+                                <a href="" onclick="$('#logoutForm').submit(); return false;">
+                                    <i class="fa fa-power-off fa-lg fa-fw"></i>
+                                    <span class="nav-text"> Logoff</span>
+                                </a>
+                            </li>
+                            @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "" }))
+                            {
+                                @Html.AntiForgeryToken()
+                            }
+                        </ul>
+                    </nav>
+                    @*<nav class="main-menu">
+                                                    <ul>
+                                                        <li>
+                                                            <a href="/LandingPage">
+                                                        <i class="fa fa-home fa-2x"></i>
+                                                        <span class="nav-text">
+                                                            Home
+                                                        </span>
+                                                        </a>
 
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="">
-                                <i class="fa fa-cogs fa-lg fa-fw"></i>
-                                <span class="nav-text"> Admin Settings</span>
-                            </a>
-                            <ul class="submenu">
-                                <li>@Html.ActionLink("Permissions", "Permissions", "Setting", new { area = "" }, new { @class = "" })</li>
-                                <li>@Html.ActionLink("Market Admin", "MarketAdmin", "Setting", new { area = "" }, new { @class = "" })</li>
-                                <li>@Html.ActionLink("Reports", "Reports", "Setting", new { area = "" }, new { @class = "" })</li>
-                                <li>@Html.ActionLink("Finance", "Finance", "Setting", new { area = "" }, new { @class = "" })</li>
-                                <li>@Html.ActionLink("Mail Admin", "MailAdmin", "Setting", new { area = "" }, new { @class = "" })</li>
-                                <li>@Html.ActionLink("User Admin", "UserAdmin", "Setting", new { area = "" }, new { @class = "" })</li>
-                                <li>@Html.ActionLink("Settings", "AdminSettings", "Setting", new { area = "" }, new { @class = "" })</li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="" onclick="$('#logoutForm').submit(); return false;">
-                                <i class="fa fa-power-off fa-lg fa-fw"></i>
-                                <span class="nav-text"> Logoff</span>
-                            </a>
-                        </li>
-                        @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "" }))
-                        {
-                            @Html.AntiForgeryToken()
-                        }
-                    </ul>
-                </nav>
-                @*<nav class="main-menu">
-                                            <ul>
-                                                <li>
-                                                    <a href="/LandingPage">
-                                                <i class="fa fa-home fa-2x"></i>
-                                                <span class="nav-text">
-                                                    Home
-                                                </span>
-                                                </a>
+                                                        </li>
+                                                        <li class="has-subnav">
+                                                            <a href="Setting/ProfileView">
+                                                                <i class="fa fa-user fa-2x"></i>
+                                                                <span class="nav-text">
+                                                                    Profile
+                                                                </span>
+                                                            </a>
 
-                                                </li>
-                                                <li class="has-subnav">
-                                                    <a href="Setting/ProfileView">
-                                                        <i class="fa fa-user fa-2x"></i>
-                                                        <span class="nav-text">
-                                                            Profile
-                                                        </span>
-                                                    </a>
+                                                        </li>
+                                                        <li class="has-subnav">
+                                                            <a href="/Mail">
+                                                                <i class="fa fa-envelope fa-2x"></i>
+                                                                <span class="nav-text">
+                                                                    Mail
+                                                                </span>
+                                                            </a>
 
-                                                </li>
-                                                <li class="has-subnav">
-                                                    <a href="/Mail">
-                                                        <i class="fa fa-envelope fa-2x"></i>
-                                                        <span class="nav-text">
-                                                            Mail
-                                                        </span>
-                                                    </a>
+                                                        </li>
+                                                        <li class="has-subnav">
+                                                            <a href="/MarketPlace">
+                                                                <i class="fa fa-shopping-cart fa-2x"></i>
+                                                                <span class="nav-text">
+                                                                    Market Place
+                                                                </span>
+                                                            </a>
 
-                                                </li>
-                                                <li class="has-subnav">
-                                                    <a href="/MarketPlace">
-                                                        <i class="fa fa-shopping-cart fa-2x"></i>
-                                                        <span class="nav-text">
-                                                            Market Place
-                                                        </span>
-                                                    </a>
-
-                                                </li>
-                                                <li>
-                                                    <a href="/Bookings">
-                                                        <i class="fa fa-calendar-o fa-2x"></i>
-                                                        <span class="nav-text">
-                                                            Bookings
-                                                        </span>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="/Feedback">
-                                                        <i class="fa fa-exclamation-triangle fa-2x"></i>
-                                                        <span class="nav-text">
-                                                            Feedback
-                                                        </span>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="/Panics">
-                                                        <i class="fa fa-exclamation-triangle fa-2x"></i>
-                                                        <span class="nav-text">
-                                                            Panics
-                                                        </span>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="/Webcam">
-                                                        <i class="fa fa-video-camera fa-2x"></i>
-                                                        <span class="nav-text">
-                                                            Webcam
-                                                        </span>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="/PremoteMe">
-                                                        <i class="fa fa-bullhorn fa-2x"></i>
-                                                        <span class="nav-text">
-                                                            PromoteMe
-                                                        </span>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="/Modsetting">
-                                                        <i class="fa fa-cog fa-2x"></i>
-                                                        <span class="nav-text">
-                                                            Mod Settings
-                                                        </span>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="/Adminsetting">
-                                                        <i class="fa fa-cogs fa-2x"></i>
-                                                        <span class="nav-text">
-                                                            Admin Settings
-                                                        </span>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                            <ul class="logout">
-                                                <li>
-                                                    <a href="#" onclick="$('#logoutForm').submit(); return false;">
-                                                        <i class="fa fa-power-off fa-2x"></i>
-                                                        <span class="nav-text">
-                                                            Logout
-                                                        </span>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                </nav>*@
+                                                        </li>
+                                                        <li>
+                                                            <a href="/Bookings">
+                                                                <i class="fa fa-calendar-o fa-2x"></i>
+                                                                <span class="nav-text">
+                                                                    Bookings
+                                                                </span>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="/Feedback">
+                                                                <i class="fa fa-exclamation-triangle fa-2x"></i>
+                                                                <span class="nav-text">
+                                                                    Feedback
+                                                                </span>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="/Panics">
+                                                                <i class="fa fa-exclamation-triangle fa-2x"></i>
+                                                                <span class="nav-text">
+                                                                    Panics
+                                                                </span>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="/Webcam">
+                                                                <i class="fa fa-video-camera fa-2x"></i>
+                                                                <span class="nav-text">
+                                                                    Webcam
+                                                                </span>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="/PremoteMe">
+                                                                <i class="fa fa-bullhorn fa-2x"></i>
+                                                                <span class="nav-text">
+                                                                    PromoteMe
+                                                                </span>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="/Modsetting">
+                                                                <i class="fa fa-cog fa-2x"></i>
+                                                                <span class="nav-text">
+                                                                    Mod Settings
+                                                                </span>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="/Adminsetting">
+                                                                <i class="fa fa-cogs fa-2x"></i>
+                                                                <span class="nav-text">
+                                                                    Admin Settings
+                                                                </span>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                    <ul class="logout">
+                                                        <li>
+                                                            <a href="#" onclick="$('#logoutForm').submit(); return false;">
+                                                                <i class="fa fa-power-off fa-2x"></i>
+                                                                <span class="nav-text">
+                                                                    Logout
+                                                                </span>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                        </nav>*@
+                </div>
             </div>
-        </div>
-        <div id="rightcolumnwrap">
-            <div id="rightcolumn">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla.</p>
+            <div id="rightcolumnwrap">
+                <div id="rightcolumn">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla.</p>
+                </div>
             </div>
+            <hr />
+            <footer style="text-align:center;">
+                <p>&copy; @DateTime.Now.Year - Ragthorn</p>
+            </footer>
         </div>
-        <hr />
-        <footer style="text-align:center;">
-            <p>&copy; @DateTime.Now.Year - Ragthorn</p>
-        </footer>
-    </div>
-    @Scripts.Render("~/bundles/bootstrap")
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-    @RenderSection("scripts", required: false)
-</body>
+        @Scripts.Render("~/bundles/bootstrap")
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+        @RenderSection("scripts", required: false)
+    </body>
 </html>

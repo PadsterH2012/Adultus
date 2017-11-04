@@ -1,5 +1,5 @@
-﻿@model PagedList.IPagedList<WebApplication.userlist>
-@using PagedList.Mvc
+﻿@model PagedList.IPagedList<WebApplication.Models.HomeViewModel>
+@using PagedList.Mvc;
 @{
     ViewBag.Title = "Home Page";
 }
@@ -38,10 +38,13 @@
 <div class="album text-muted" style="background-color:#FFFFFF;">
     <div class="container">
         <div class="row">
-            @foreach (var item in Model)
-            {
-                String profilePic = "/Content/UserPicture/"+@item.Profile_Pic;
-                if (!File.Exists(Server.MapPath("/Content/UserPicture/") + @item.Profile_Pic)) profilePic = "/Image/man.svg";
+            @{var model = Model.Single();
+                
+                    foreach(var item in model.userList)
+                    {
+
+                        String profilePic = "/Content/UserPicture/" + @item.Profile_Pic;
+                        if (!File.Exists(Server.MapPath("/Content/UserPicture/") + @item.Profile_Pic)) profilePic = "/Image/man.svg";
                 <div class="item-gallery" style="margin-left:5px;margin-right:5px;">
                     <a href="~/userinfoes/Details/@item.Id" title="@item.UserName" data-gallery>
                         <div class="crop" style="width: 120px; float:left;">@item.UserName</div>
@@ -52,10 +55,13 @@
                         <div class="crop" style="float:left;">@item.OnlineNote</div>
                     </a>
                 </div>
+
+                    }
+         
             }
         </div>
         <div class="row">
-            @if (@Model.PageCount > 1)
+            @if (Model.Count > 1)
             {
                 <table align="center">
                     <tr>
