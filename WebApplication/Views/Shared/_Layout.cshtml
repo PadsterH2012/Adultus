@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 @model PagedList.IPagedList<WebApplication.Models.HomeViewModel>
     <html lang="en">
     <head>
@@ -154,9 +154,10 @@
                             </li>
                             <li>
                                 @if (User.Identity.IsAuthenticated)
-                                {
-                                    if (Model.Single().aspUserClaim.ClaimType == "1")
-                                    {
+                                            {
+                                                var claim = Model.Where(i => i.aspUserClaim;
+                                                if (claim)
+                                                {
                                         <a href="">
                                             <i class="fa fa-cogs fa-lg fa-fw"></i>
                                             <span class="nav-text"> Admin Settings</span>
@@ -169,6 +170,7 @@
                                             <li>@Html.ActionLink("Mail Admin", "MailAdmin", "Setting", new { area = "" }, new { @class = "" })</li>
                                             <li>@Html.ActionLink("User Admin", "UserAdmin", "Setting", new { area = "" }, new { @class = "" })</li>
                                             <li>@Html.ActionLink("Settings", "AdminSettings", "Setting", new { area = "" }, new { @class = "" })</li>
+                                            <li>@Html.ActionLink("View Roles", "Index", "Roles", new { area = "" }, new { @class = "" })</li>
                                         </ul>
                                     }
                                 }

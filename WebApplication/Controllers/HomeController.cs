@@ -43,8 +43,8 @@ namespace WebApplication.Controllers
 
             //Using aspnetclaim rules to store roles which have been manually inputted
             //NOT ADDED BY IDS
-            aspnetuserclaim aspUserClaim = new aspnetuserclaim();
-            aspUserClaim = db.aspnetuserclaims.Where(i => i.UserId == userID).Single();
+            List<aspnetuserclaim> aspUserClaim = new List<aspnetuserclaim>();
+            aspUserClaim = db.aspnetuserclaims.Where(i => i.UserId == userID).ToList();
 
             //Create new HomeViewModel which contains userlist and aspnetuserclaims objects
             List<HomeViewModel> homeViewModelList = new List<HomeViewModel>();

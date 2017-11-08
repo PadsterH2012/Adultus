@@ -9,6 +9,6 @@ namespace WebApplication.Models
     {
         public List<userlist> userList { get; set; }
 
-        public aspnetuserclaim aspUserClaim { get; set; }
+        public List<aspnetuserclaim> aspUserClaim { get; set; }
     }
 }

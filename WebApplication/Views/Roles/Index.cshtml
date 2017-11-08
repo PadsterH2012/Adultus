@@ -1,0 +1,22 @@
+﻿@model IEnumerable<WebApplication.Models.HomeViewModel>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+@Styles.Render("~/Content/css")
+<table class="table">
+        @foreach (var userClaim in Model)
+        {
+            <tr>
+                <th>
+                    @Html.DisplayFor(model => userClaim.ClaimType)
+                </th>
+                <th>
+                    @Html.DisplayFor(model => userClaim.ClaimValue)
+                </th>
+            </tr>
+        }
+</table>
+   @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
