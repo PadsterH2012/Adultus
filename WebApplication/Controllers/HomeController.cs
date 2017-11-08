@@ -45,12 +45,16 @@ namespace WebApplication.Controllers
             //NOT ADDED BY IDS
             List<aspnetuserclaim> aspUserClaim = new List<aspnetuserclaim>();
             aspUserClaim = db.aspnetuserclaims.Where(i => i.UserId == userID).ToList();
+            
+            var aspRole = from r in db.aspnetroles
+                      select r;
 
             //Create new HomeViewModel which contains userlist and aspnetuserclaims objects
-            List<HomeViewModel> homeViewModelList = new List<HomeViewModel>();
+            List < HomeViewModel > homeViewModelList = new List<HomeViewModel>();
             HomeViewModel item = new HomeViewModel();
             item.userList = users.ToList();
             item.aspUserClaim = aspUserClaim;
+            item.aspRole = aspRole.ToList();
             homeViewModelList.Add(item);
 
             return View(homeViewModelList.ToPagedList(pageNumber, pagesize));

@@ -154,10 +154,10 @@
                             </li>
                             <li>
                                 @if (User.Identity.IsAuthenticated)
-                                            {
-                                                var claim = Model.Where(i => i.aspUserClaim;
-                                                if (claim)
-                                                {
+                                {
+                                    var claim = Model.Where(i => i.aspUserClaim.Any(j => j.ClaimType == "1"));
+                                    if (claim.Single().aspUserClaim.Single().ClaimType == "1")
+                                    {
                                         <a href="">
                                             <i class="fa fa-cogs fa-lg fa-fw"></i>
                                             <span class="nav-text"> Admin Settings</span>
@@ -171,6 +171,7 @@
                                             <li>@Html.ActionLink("User Admin", "UserAdmin", "Setting", new { area = "" }, new { @class = "" })</li>
                                             <li>@Html.ActionLink("Settings", "AdminSettings", "Setting", new { area = "" }, new { @class = "" })</li>
                                             <li>@Html.ActionLink("View Roles", "Index", "Roles", new { area = "" }, new { @class = "" })</li>
+                                            <li>@Html.ActionLink("Create Roles", "Create", "Roles", new { area = "" }, new { @class = "" })</li>
                                         </ul>
                                     }
                                 }

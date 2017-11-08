@@ -10,5 +10,7 @@ namespace WebApplication.Models
         public List<userlist> userList { get; set; }
 
         public List<aspnetuserclaim> aspUserClaim { get; set; }
+
+        public List<aspnetrole> aspRole { get; set; }
     }
 }
