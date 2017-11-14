@@ -11,6 +11,7 @@ namespace WebApplication.Models
 
         public List<aspnetuserclaim> aspUserClaim { get; set; }
 
-        public List<aspnetrole> aspRole { get; set; }
+        //public List<aspnetrole> aspRole { get; set; }
+        public List<WebApplication.role> role { get; set; }
     }
 }

@@ -28,8 +28,8 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UserId" Type="varchar" MaxLength="128" Nullable="false" />
-          <Property Name="ClaimType" Type="longtext" />
-          <Property Name="ClaimValue" Type="longtext" />
+          <Property Name="ClaimType" Type="varchar" MaxLength="128" />
+          <Property Name="ClaimValue" Type="varchar" MaxLength="128" />
         </EntityType>
         <EntityType Name="aspnetuserlogins">
           <Key>
@@ -65,6 +65,13 @@
           <Property Name="LockoutEnabled" Type="bool" Nullable="false" />
           <Property Name="AccessFailedCount" Type="int" Nullable="false" />
           <Property Name="UserName" Type="varchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="roles">
+          <Key>
+            <PropertyRef Name="roleId" />
+          </Key>
+          <Property Name="roleId" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="128" />
         </EntityType>
         <EntityType Name="userinfo">
           <Key>
@@ -184,6 +191,7 @@ warning 6002: The table/view 'def.mysqldb.userlist' does not have a primary key 
           <EntitySet Name="aspnetuserlogins" EntityType="Self.aspnetuserlogins" Schema="mysqldb" store:Type="Tables" />
           <EntitySet Name="aspnetuserroles" EntityType="Self.aspnetuserroles" Schema="mysqldb" store:Type="Tables" />
           <EntitySet Name="aspnetusers" EntityType="Self.aspnetusers" Schema="mysqldb" store:Type="Tables" />
+          <EntitySet Name="roles" EntityType="Self.roles" Schema="mysqldb" store:Type="Tables" />
           <EntitySet Name="userinfo" EntityType="Self.userinfo" Schema="mysqldb" store:Type="Tables" />
           <EntitySet Name="userlist" EntityType="Self.userlist" store:Type="Views" store:Schema="mysqldb">
             <DefiningQuery>SELECT
@@ -341,6 +349,7 @@ FROM `userlist` AS `userlist`</DefiningQuery>
           </AssociationSet>
           <EntitySet Name="userinfoes" EntityType="mysqldbModel.userinfo" />
           <EntitySet Name="userlists" EntityType="mysqldbModel.userlist" />
+          <EntitySet Name="roles" EntityType="mysqldbModel.role" />
         </EntityContainer>
         <EntityType Name="userinfo">
           <Key>
@@ -394,6 +403,13 @@ FROM `userlist` AS `userlist`</DefiningQuery>
           <Property Name="OnlineNote" Type="String" Nullable="false" MaxLength="7" FixedLength="false" Unicode="false" />
           <Property Name="Ethnicity" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
           <Property Name="Interests" Type="String" MaxLength="512" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="role">
+          <Key>
+            <PropertyRef Name="roleId" />
+          </Key>
+          <Property Name="roleId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -514,6 +530,14 @@ FROM `userlist` AS `userlist`</DefiningQuery>
                 <ScalarProperty Name="Gender" ColumnName="Gender" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="roles">
+            <EntityTypeMapping TypeName="mysqldbModel.role">
+              <MappingFragment StoreEntitySet="roles">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="roleId" ColumnName="roleId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -6,14 +6,11 @@
 <h2>Index</h2>
 @Styles.Render("~/Content/css")
 <table class="table">
-        @foreach (var userClaim in Model.Single().aspUserClaim)
+        @foreach (var userClaim in Model.Single().role)
         {
             <tr>
                 <th>
-                    @Html.DisplayFor(model => userClaim.ClaimType)
-                </th>
-                <th>
-                    @Html.DisplayFor(model => userClaim.ClaimValue)
+                    @Html.DisplayFor(model => userClaim.Name)
                 </th>
             </tr>
         }

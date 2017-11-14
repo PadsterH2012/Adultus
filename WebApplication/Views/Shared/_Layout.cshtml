@@ -163,7 +163,8 @@
                                             <span class="nav-text"> Admin Settings</span>
                                         </a>
                                         <ul class="submenu">
-                                            <li>@Html.ActionLink("Permissions", "Permissions", "Setting", new { area = "" }, new { @class = "" })</li>
+                                            <li>@Html.ActionLink("Permissions", "Index", "AssignRoles", new { area = "" }, new { @class = "" })</li>
+                                            <li>@Html.ActionLink("Create Permissions", "Create", "AssignRoles", new { area = "" }, new { @class = "" })</li>
                                             <li>@Html.ActionLink("Market Admin", "MarketAdmin", "Setting", new { area = "" }, new { @class = "" })</li>
                                             <li>@Html.ActionLink("Reports", "Reports", "Setting", new { area = "" }, new { @class = "" })</li>
                                             <li>@Html.ActionLink("Finance", "Finance", "Setting", new { area = "" }, new { @class = "" })</li>

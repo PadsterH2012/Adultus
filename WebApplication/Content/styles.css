@@ -169,7 +169,7 @@ text-align: match-parent;
 
 .mainmenu li:hover .submenu {
   display: block;
-  max-height: 300px;
+  max-height: 500px;
 }
 
 /*

@@ -46,7 +46,7 @@ namespace WebApplication.Controllers
             List<aspnetuserclaim> aspUserClaim = new List<aspnetuserclaim>();
             aspUserClaim = db.aspnetuserclaims.Where(i => i.UserId == userID).ToList();
             
-            var aspRole = from r in db.aspnetroles
+            var roles = from r in db.roles
                       select r;
 
             //Create new HomeViewModel which contains userlist and aspnetuserclaims objects
@@ -54,7 +54,7 @@ namespace WebApplication.Controllers
             HomeViewModel item = new HomeViewModel();
             item.userList = users.ToList();
             item.aspUserClaim = aspUserClaim;
-            item.aspRole = aspRole.ToList();
+            item.role = roles.ToList();
             homeViewModelList.Add(item);
 
             return View(homeViewModelList.ToPagedList(pageNumber, pagesize));

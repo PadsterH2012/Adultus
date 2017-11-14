@@ -32,5 +32,6 @@ namespace WebApplication
         public virtual DbSet<aspnetuser> aspnetusers { get; set; }
         public virtual DbSet<userinfo> userinfoes { get; set; }
         public virtual DbSet<userlist> userlists { get; set; }
+        public virtual DbSet<role> roles { get; set; }
     }
 }
