@@ -156,7 +156,7 @@
                                 @if (User.Identity.IsAuthenticated)
                                 {
                                     var claim = Model.Where(i => i.aspUserClaim.Any(j => j.ClaimType == "1"));
-                                    if (claim.Single().aspUserClaim.Single().ClaimType == "1")
+                                    if (claim != null)
                                     {
                                         <a href="">
                                             <i class="fa fa-cogs fa-lg fa-fw"></i>

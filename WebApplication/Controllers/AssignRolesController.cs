@@ -49,9 +49,13 @@ namespace WebApplication.Controllers
             var roles = from r in db.roles
                         select r;
 
+            var users = from s in db.userlists
+                        select s;
+
             List<HomeViewModel> homeViewModelList = new List<HomeViewModel>();
             HomeViewModel item = new HomeViewModel();
             item.aspUserClaim = aspUserClaim;
+            item.userList = users.ToList();
             item.role = roles.ToList();
             homeViewModelList.Add(item);
             return View(homeViewModelList.ToPagedList(1, 1));
@@ -62,10 +66,10 @@ namespace WebApplication.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ClaimType,ClaimValue,UserID")] aspnetuserclaim userClaim)
+        public ActionResult Create([Bind(Include = "ClaimValue,UserID")] aspnetuserclaim userClaim)
         {
             userClaim.Id = Guid.NewGuid().GetHashCode();
-            userClaim.ClaimType = db.aspnetuserclaims.OrderBy(x => x.ClaimType).Single().ClaimType + 1;
+            userClaim.ClaimType = int.Parse(db.aspnetuserclaims.AsEnumerable().Last().ClaimType + 1).ToString();//.OrderBy(x => x.ClaimType).Single().ClaimType + 1).ToString();
             if (ModelState.IsValid)
             {
                 db.aspnetuserclaims.Add(userClaim);
